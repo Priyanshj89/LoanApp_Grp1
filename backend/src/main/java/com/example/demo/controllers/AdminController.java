@@ -26,4 +26,13 @@ public class AdminController {
 	public Admin addAddmin(@RequestBody Admin admin) {
 		return adminRepo.save(admin);
 	}
+	
+	@PostMapping("/login")
+	public String validateLogin(@RequestBody Admin admin) {
+		Admin tempAdmin=adminRepo.getReferenceById(admin.getAdmin_id());
+		if(tempAdmin.getPassword().equals(admin.getPassword()))
+			return "success";
+		else
+			return "failure";
+	}
 }
