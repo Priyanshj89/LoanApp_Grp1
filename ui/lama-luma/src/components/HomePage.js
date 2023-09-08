@@ -34,7 +34,7 @@ export default function HomePage() {
         .catch(err => {
           console.log(err);
         });
-        navigate("/user")
+        navigate("/userpage")
 
       };
 
