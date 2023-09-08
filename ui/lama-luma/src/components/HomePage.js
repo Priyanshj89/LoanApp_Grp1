@@ -34,7 +34,7 @@ export default function HomePage() {
         .catch(err => {
           console.log(err);
         });
-        navigate("/userpage")
+        navigate("/user/dashboard")
 
       };
 
@@ -66,6 +66,7 @@ export default function HomePage() {
                   <button type="submit" className="btn btn-primary">
                     Submit
                   </button>
+                  <div onClick={()=>{navigate('/adminpage')}}>For Admin Login Click Here</div>
                 </form>
               </div>
             </div>

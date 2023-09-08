@@ -6,7 +6,7 @@ import { ApplyLoan } from './user/dashboard/applyLoan';
 import { ViewLoan } from './user/dashboard/viewLoan';
 import { ViewItemsPurchased } from './user/dashboard/viewTemsPurchased';
 import HomePage from './components/HomePage';
-import UserPage from './components/UserPage';
+import AdminPage from './components/AdminPage';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
       <Route path="/user/dashboard/viewItemsPurchased" element={<ViewItemsPurchased />} />
       <Route path="/admin/dashboard/" element={<AdminDashboard />} />
       <Route path="/homepage" element={<HomePage />} />
-      <Route path="/userpage" element={<UserPage />} />
+      <Route path="/adminpage" element={<AdminPage />} />
       
       {/* <Route  path="/" element={<Login />}/> */}
 
