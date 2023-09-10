@@ -1,25 +1,57 @@
 import React,{useState} from "react";
 import {useNavigate} from "react-router-dom";
-import axios from 'axios'
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
+import './AdminLogin.css';
 
-export default function HomePage() {
+export default function AdminLogin() {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [passwordError, setpasswordError] = useState("");
     const [emailError, setemailError] = useState("");
   
+    
     const navigate = useNavigate();
 
-    const LoginSubmit = (e) => {
+    const handleValidation = (event) => {
+      let formIsValid = true;
+  
+      if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
+        formIsValid = false;
+        setemailError("Email Not Valid");
+        return false;
+      } else {
+        setemailError("");
+        formIsValid = true;
+      }
+  
+      if (!password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)) {
+        formIsValid = false;
+        setpasswordError(
+          "Minimum eight characters, at least one letter and one number"
+        );
+        return false;
+      } else {
+        setpasswordError("");
+        formIsValid = true;
+      }
+  
+      return formIsValid;
+    };
+
+    
+    const loginSubmit = (e) => {
         e.preventDefault();
-        
-        axios
-        .get(
-          "http://localhost:8080/hello",
-          /*{
-            params: { email: email },
-          },*/
+        const formvalidation = handleValidation();
+
+        if(formvalidation){
+         axios
+        .post(
+          "http://localhost:8080/admin",
+          {
+             email: email,
+             password:password
+          },
           {
             headers: {
               "Content-Type": "application/json",
@@ -34,8 +66,10 @@ export default function HomePage() {
         .catch(err => {
           console.log(err);
         });
-        navigate("/user/dashboard")
-
+      
+       
+       navigate("/admin/dashboard")
+      }
       };
 
       return (
@@ -43,9 +77,10 @@ export default function HomePage() {
           <div className="container">
             <div className="row d-flex justify-content-center">
               <div className="col-md-4">
-                <form id="loginform" onSubmit={LoginSubmit}>
+                <h2>Admin Login</h2>
+                <form id="loginform" onSubmit={loginSubmit}>
                   <div className="form-group">
-                    <label>Email address</label>
+                    <label>Email</label>
                     <input
                       type="text"
                       className="form-control"
@@ -53,6 +88,9 @@ export default function HomePage() {
                       placeholder="Enter email"
                       onChange={(event) => setEmail(event.target.value)}
                     />
+                <small id="emailHelp" className="text-danger form-text">
+                  {emailError}
+                </small>
                   </div>
                   <div className="form-group">
                     <label>Password</label>
@@ -62,11 +100,13 @@ export default function HomePage() {
                       placeholder="Password"
                       onChange={(event) => setPassword(event.target.value)}
                     />
+                <small id="passworderror" className="text-danger form-text">
+                  {passwordError}
+                </small>
                   </div>
                   <button type="submit" className="btn btn-primary">
                     Submit
                   </button>
-                  <div onClick={()=>{navigate('/adminpage')}}>For Admin Login Click Here</div>
                 </form>
               </div>
             </div>
