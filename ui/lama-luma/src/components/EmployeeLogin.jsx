@@ -15,14 +15,14 @@ export default function EmployeeLogin() {
     const handleValidation = (event) => {
       let formIsValid = true;
   
-      if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
+      /*if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
         formIsValid = false;
         setemailError("Email Not Valid");
         return false;
       } else {
         setemailError("");
         formIsValid = true;
-      }
+      }*/
   
       if (!password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)) {
         formIsValid = false;
@@ -47,8 +47,9 @@ export default function EmployeeLogin() {
         .get(
           "http://localhost:8080/hello",
           {
-            params: { email: email },
-          },
+            id: email,
+            password:password
+         },
           {
             headers: {
               "Content-Type": "application/json",
@@ -76,12 +77,12 @@ export default function EmployeeLogin() {
                 <h2>Employee Login</h2>
                 <form id="loginform" onSubmit={LoginSubmit}>
                   <div className="form-group">
-                    <label>Email address</label>
+                    <label>ID</label>
                     <input
                       type="text"
                       className="form-control"
                       name="EmailInput"
-                      placeholder="Enter email"
+                      placeholder="Enter ID"
                       onChange={(event) => setEmail(event.target.value)}
                     />
                     <small id="emailHelp" className="text-danger form-text">

@@ -16,14 +16,14 @@ export default function AdminLogin() {
     const handleValidation = (event) => {
       let formIsValid = true;
   
-      if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
+      /*if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
         formIsValid = false;
         setemailError("Email Not Valid");
         return false;
       } else {
         setemailError("");
         formIsValid = true;
-      }
+      }*/
   
       if (!password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)) {
         formIsValid = false;
@@ -49,7 +49,7 @@ export default function AdminLogin() {
         .post(
           "http://localhost:8080/admin",
           {
-             email: email,
+             id: email,
              password:password
           },
           {
@@ -80,12 +80,12 @@ export default function AdminLogin() {
                 <h2>Admin Login</h2>
                 <form id="loginform" onSubmit={loginSubmit}>
                   <div className="form-group">
-                    <label>Email</label>
+                    <label>ID</label>
                     <input
                       type="text"
                       className="form-control"
                       name="EmailInput"
-                      placeholder="Enter email"
+                      placeholder="Enter ID"
                       onChange={(event) => setEmail(event.target.value)}
                     />
                 <small id="emailHelp" className="text-danger form-text">
