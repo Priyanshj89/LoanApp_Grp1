@@ -1,8 +1,10 @@
 package com.example.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +14,7 @@ import com.example.demo.repositories.AdminRepository;
 
 @RestController
 @RequestMapping("/admin")
+@CrossOrigin("http://localhost:3000")
 public class AdminController {
 	
 	@Autowired
@@ -34,5 +37,20 @@ public class AdminController {
 			return "success";
 		else
 			return "failure";
+	}
+	
+	@PutMapping("/updatePass")
+	public String forgotPassword(@RequestBody Admin admin)
+	{
+		Admin tempAdmin=adminRepo.getReferenceById(admin.getAdmin_id());
+		if(tempAdmin.getName().equals(admin.getName()))
+		{
+		tempAdmin.setPassword(admin.getPassword());
+		adminRepo.save(tempAdmin);
+		return "Updated";
+		}
+		else {
+		return "Validation failed";
+		}
 	}
 }
