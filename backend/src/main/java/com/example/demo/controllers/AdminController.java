@@ -24,7 +24,15 @@ public class AdminController {
 	
 	@PostMapping("/adduser")
 	public Admin addAddmin(@RequestBody Admin admin) {
-		return adminRepo.save(admin);
+		boolean ifExists =adminRepo.existsById(admin.getAdmin_id());
+		// User already exists check
+		if (!ifExists)
+			return adminRepo.save(admin);
+		else
+		{
+			Admin tempAdmin=adminRepo.findById(admin.getAdmin_id()).get();
+			return tempAdmin;
+		}
 	}
 	
 	@PostMapping("/login")
