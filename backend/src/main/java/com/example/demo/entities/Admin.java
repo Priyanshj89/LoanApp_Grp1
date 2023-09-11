@@ -1,5 +1,4 @@
 package com.example.demo.entities;
-
 import jakarta.persistence.Column;
 import javax.validation.constraints.Size;
 import jakarta.persistence.Entity;
