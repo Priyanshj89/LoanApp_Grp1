@@ -1,6 +1,6 @@
 package com.example.demo.entities;
-
 import jakarta.persistence.Column;
+import javax.validation.constraints.Size;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -13,9 +13,11 @@ public class Admin {
 	private String admin_id;
 	
 	@Column(name="name")
+	@Size(min=1, message="required")
 	private String name;
 	
 	@Column(name="password")
+	@Size(min=1, message="required")
 	private String password;
 	
 	public Admin() {
