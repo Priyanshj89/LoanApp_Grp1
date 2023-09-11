@@ -1,24 +1,24 @@
-import './App.css';
 import { Routes, Route } from "react-router-dom";
-import Login from './login';
 import { Dashboard as UserDashboard } from './user/dashboard/dashboard';
 import { Dashboard as  AdminDashboard } from './admin/dashboard/dashboard';
 import { ApplyLoan } from './user/dashboard/applyLoan';
 import { ViewLoan } from './user/dashboard/viewLoan';
 import { ViewItemsPurchased } from './user/dashboard/viewTemsPurchased';
+import HomePage from './components/HomePage';
+import EmployeeLogin from "./components/EmployeeLogin";
+import AdminPage from './components/AdminLogin';
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<HomePage />} />
       <Route path="/user/dashboard/" element={<UserDashboard />} />
       <Route path="/user/dashboard/applyLoan" element={<ApplyLoan />} />
       <Route path="/user/dashboard/viewLoan" element={<ViewLoan />} />
       <Route path="/user/dashboard/viewItemsPurchased" element={<ViewItemsPurchased />} />
-      <Route path="/admin/dashboard/" element={<AdminDashboard />} >
-      </Route>
-      {/* <Route  path="/" element={<Login />}/> */}
-
+      <Route path="/admin/dashboard/" element={<AdminDashboard />} />
+      <Route path="/employeelogin" element={<EmployeeLogin />} />
+      <Route path="/adminlogin" element={<AdminPage />} />
     </Routes>
   );
 }
