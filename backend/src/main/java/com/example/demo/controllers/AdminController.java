@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Admin;
+import com.example.demo.entities.Employee;
 import com.example.demo.repositories.AdminRepository;
+import com.example.demo.repositories.EmployeeRepository;
 
 @RestController
 @RequestMapping("/admin")
@@ -20,14 +22,19 @@ public class AdminController {
 	@Autowired
     private AdminRepository adminRepo;
 	
+	@Autowired
+	private EmployeeRepository empRepo;
+	
 	@GetMapping("/add")
 	public String addHello() {
 		return "Hello";
 	}
 	
 	@PostMapping("/adduser")
-	public Admin addAddmin(@RequestBody Admin admin) {
-		return adminRepo.save(admin);
+	public String addAddmin(@RequestBody Admin admin) {
+		 adminRepo.save(admin);
+		 return "admin addded";
+		 
 	}
 	
 	@PostMapping("/login")
@@ -51,6 +58,19 @@ public class AdminController {
 		}
 		else {
 		return "Validation failed";
+		}
+	}
+	
+	@PostMapping("/addCustomer")
+	public Employee addCustomer(@RequestBody Employee employee) {
+		boolean ifExists=empRepo.existsById(employee.getEmployee_id());
+		if(ifExists)
+		{
+			Employee tempEmp=empRepo.getReferenceById(employee.getEmployee_id());
+			return tempEmp;
+		}
+		else {
+			return empRepo.save(employee);
 		}
 	}
 }

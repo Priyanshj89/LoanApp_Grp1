@@ -2,14 +2,31 @@ package com.example.demo.entities;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="employee")
 public class Employee {
+	@Id
+	@Column(name="employee_id")
 	private String employee_id;
+	@Column(name="name")
 	private String name;
+	@Column(name="designation")
 	private String designation;
+	@Column(name="dept")
 	private String dept;
+	@Column(name="gender")
 	private String gender;
+	@Column(name="dob")
 	private Date dob;
+	@Column(name="doj")
 	private Date doj;
+	@Column(name="password")
+	private String password;
 	public String getEmployee_id() {
 		return employee_id;
 	}
@@ -53,7 +70,7 @@ public class Employee {
 		this.doj = doj;
 	}
 	public Employee(String employee_id, String name, String designation, String dept, String gender, Date dob,
-			Date doj) {
+			Date doj,String password) {
 		super();
 		this.employee_id = employee_id;
 		this.name = name;
@@ -62,8 +79,15 @@ public class Employee {
 		this.gender = gender;
 		this.dob = dob;
 		this.doj = doj;
+		this.password=password;
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public Employee() {
 		super();
 	}
