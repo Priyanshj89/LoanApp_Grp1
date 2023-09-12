@@ -2,7 +2,8 @@ import React,{useState} from "react";
 import {useNavigate} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import './AdminLogin.css';
+import '../styles/AdminLogin.css';
+import Navbar from "./Navbar";
 
 export default function AdminLogin() {
     const [password, setPassword] = useState("");
@@ -74,9 +75,10 @@ export default function AdminLogin() {
 
       return (
         <div className="App">
+          <Navbar/>
           <div className="container">
             <div className="row d-flex justify-content-center">
-              <div className="col-md-4">
+              <div className="col-md-4 adminlogin-card">
                 <h2>Admin Login</h2>
                 <form id="loginform" onSubmit={loginSubmit}>
                   <div className="form-group">
@@ -104,7 +106,7 @@ export default function AdminLogin() {
                   {passwordError}
                 </small>
                   </div>
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="prim-btn">
                     Submit
                   </button>
                 </form>
