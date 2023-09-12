@@ -1,7 +1,7 @@
 package com.example.demo.entities;
 import javax.validation.constraints.Size;
 
-
+import java.io.Serializable;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="employee")
-public class Employee {
+public class Employee implements Serializable {
 	@Id
 	@Column(name="employee_id")
 	@Size(min=1, message="required")
