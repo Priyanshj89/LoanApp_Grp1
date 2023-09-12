@@ -1,15 +1,15 @@
-import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-    return <div className="adminDashboard">
-        <h1>Admin Dashboard</h1>
-        <Button style={{marginLeft:'150px',marginTop:'200px'}}>Customer data Management</Button>
-
-        <Button style={{marginLeft:'150px',marginTop:'200px'}}>Loan Card Management</Button>
-        <Button style={{marginLeft:'150px',marginTop:'200px'}}>Item Master Data</Button>
-
-
-
-    </div>
+    return (
+        <div>
+            <h1>Admin Dashboard</h1>
+            <div>
+                <Link to ='/admin/dashboard/custDataManagement'><button>Customer Data Management</button></Link>
+                <button>Items Master Data</button>
+                <button>Loan Card Management</button>
+            </div>
+        </div>
+    )
 }
-export {Dashboard};
+export { Dashboard };
