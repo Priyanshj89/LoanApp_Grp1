@@ -15,7 +15,6 @@ export default function FormValidation() {
             'dob': data.dob.value,
             'doj': data.doj.value,
             'password': data.password.value
-
         }
         let res = await axios.post('http://localhost:8082/admin/addCustomer', req, {
             headers: {
@@ -33,8 +32,11 @@ export default function FormValidation() {
         console.log(req);
     }
     return (
-        <div style= {{display: 'flex', justifyContent: 'center'}}>
-            <Form onSubmit={(event) => handleSubmit(event.target)} >
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Form onSubmit={(event) => {
+                event.target.reset();
+                handleSubmit(event.target)
+            }}>
 
                 <label>Employee ID </label>
                 <div className="form-control"
