@@ -1,26 +1,51 @@
-import { Axios } from 'axios';
+import axios from 'axios';
+import { useState } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 
 export default function FormValidation() {
-    // const { register, handleSubmit, formState: { errors } } = useForm();
-    const handleSubmit = (data) => {
-        // const req = {
+    const [empId, setEmpId] = useState(Math.floor(Math.random()*1000000));
+    const handleSubmit = async (data) => {
+        const req = {
+            'employee_id': empId,
+            'name': data.name.value,
+            'designation': data.designation.value,
+            'dept': data.department.value,
+            'gender': data.gender.value,
+            'dob': data.dob.value,
+            'doj': data.doj.value,
+            'password': data.password.value
 
-        // }
-        // Axios.post()
-        console.log(data.value);
+        }
+        let res= await axios.post('http://localhost:8082/admin/addCustomer', req, {
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            },
+        });
+        if(res?.status === 200){
+            alert('User Created');
+            setEmpId(()=>Math.floor(Math.random()*1000000));
+        }
+        else {
+            alert('res.status');
+        }
+        console.log(req);
     }
     return (
-        <div>
-            <Form onSubmit={(event) => handleSubmit(event.target.empId)}>
+        <div className="row d-flex justify-content-center">
+            <Form onSubmit={(event) => handleSubmit(event.target)}>
+
+                <label>Employee ID </label>
+                <span>{empId}</span>
+                
 
                 <Form.Field>
-                    <label>Employee ID</label>
+                    <label>Password</label>
                     <input
-                        placeholder='Employee ID'
-                        type="number"
-                        min="0"
-                        {...("empId", { required: true })}
+                        placeholder='Password'
+                        type="password"
+                        id='password'
+                        {...("password", { required: true })}
                     />
                 </Form.Field>
 
@@ -29,6 +54,7 @@ export default function FormValidation() {
                     <input
                         placeholder='Employee Name'
                         type="text"
+                        id='name'
                         {...("empName", { required: true, maxLength: 10 })}
                     />
                 </Form.Field>
@@ -37,6 +63,7 @@ export default function FormValidation() {
                     <input
                         placeholder='Designation'
                         type="text"
+                        id='designation'
                         {...("Designation", { required: true, maxLength: 10 })}
                     />
                 </Form.Field>
@@ -45,6 +72,7 @@ export default function FormValidation() {
                     <input
                         placeholder='Department'
                         type="text"
+                        id='department'
                         {...("Department", { required: true, maxLength: 10 })}
                     />
                 </Form.Field>
@@ -55,15 +83,15 @@ export default function FormValidation() {
                     <input
                         placeholder='Gender'
                         type="text"
-                        {...("Gender", { required: true })}
+                        id='gender'
+                        {...("Gender", { required: true, maxLength: 1 })}
                         list='genderList'
                     />
 
-                        <datalist id="genderList">
-                            <option value='Male' />
-                            <option value='Female' />
-                            <option value='Other' />
-                        </datalist>
+                    <datalist id="genderList">
+                        <option value='M' />
+                        <option value='F' />
+                    </datalist>
 
                 </Form.Field>
                 <Form.Field>
@@ -71,15 +99,17 @@ export default function FormValidation() {
                     <input
                         placeholder='DOB'
                         type="date"
+                        id='dob'
                         {...("DOB", { required: true })}
                     />
-                </Form.Field>                
+                </Form.Field>
                 <Form.Field>
                     <label>DOJ</label>
                     <input
                         placeholder='DOJ'
                         type="date"
-                        {...("DOJ", { required: true})}
+                        id="doj"
+                        {...("DOJ", { required: true })}
                     />
                 </Form.Field>
 
