@@ -69,6 +69,13 @@ public class Employee {
 	public void setDoj(Date doj) {
 		this.doj = doj;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public Employee(String employee_id, String name, String designation, String dept, String gender, Date dob,
 			Date doj,String password) {
 		super();
@@ -82,12 +89,7 @@ public class Employee {
 		this.password=password;
 	}
 	
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	
 	public Employee() {
 		super();
 	}
