@@ -1,4 +1,6 @@
 package com.example.demo.entities;
+import javax.validation.constraints.Size;
+
 
 import java.util.Date;
 
@@ -12,21 +14,35 @@ import jakarta.persistence.Table;
 public class Employee {
 	@Id
 	@Column(name="employee_id")
+	@Size(min=1, message="required")
 	private String employee_id;
+	
 	@Column(name="name")
+	@Size(min=1, message="required")
 	private String name;
+	
 	@Column(name="designation")
+	@Size(min=1, message="required")
 	private String designation;
+	
 	@Column(name="dept")
+	@Size(min=1, message="required")
 	private String dept;
+	
 	@Column(name="gender")
+	@Size(min=1, message="required")
 	private String gender;
+	
 	@Column(name="dob")
 	private Date dob;
+	
 	@Column(name="doj")
 	private Date doj;
+	
 	@Column(name="password")
+	@Size(min=3, message="required")
 	private String password;
+	
 	public String getEmployee_id() {
 		return employee_id;
 	}

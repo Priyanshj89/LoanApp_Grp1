@@ -58,16 +58,24 @@ public class EmployeeController {
 	
 	@PostMapping("/login")
 	public String validateLogin(@RequestBody Employee emp) {
-		Employee tempEmp=empRepo.getReferenceById(emp.getEmployee_id());
-		if(tempEmp.getPassword().equals(emp.getPassword()))
-			return "success";
-		else
-			return "failure";
+		try {
+			Employee tempEmp=empRepo.getReferenceById(emp.getEmployee_id());
+			if(tempEmp.getPassword().equals(emp.getPassword()))
+				return "success";
+			else
+				return "failure";
+		}
+		catch (jakarta.persistence.EntityNotFoundException e) 
+		{
+			return "User Does not Exist";
+		}
+
 	}
 	
 	@PutMapping("/updatePass")
 	public String forgotPassword(@RequestBody Employee emp)
 	{
+		try {
 		Employee tempEmp=empRepo.getReferenceById(emp.getEmployee_id());
 		if(tempEmp.getName().equals(emp.getName()))
 		{
@@ -77,6 +85,11 @@ public class EmployeeController {
 		}
 		else {
 		return "Validation failed";
+		}
+		}
+		catch (jakarta.persistence.EntityNotFoundException e) 
+		{
+			return "User Does not Exist";
 		}
 	}
 
