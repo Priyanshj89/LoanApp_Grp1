@@ -47,9 +47,9 @@ export default function AdminLogin() {
         if(formvalidation){
          axios
         .post(
-          "http://localhost:8080/admin",
+          "http://localhost:8082/admin/login",
           {
-             id: email,
+             admin_id: email,
              password:password
           },
           {
@@ -61,14 +61,17 @@ export default function AdminLogin() {
         )
         .then(res => {
             console.log("Heelo"+res)
-          alert(res.data)
+            if(res.data=="success")
+            navigate("/admin/dashboard")
+            else
+            alert("wrong password/ incorrect id");
         })
         .catch(err => {
           console.log(err);
         });
       
        
-       navigate("/admin/dashboard")
+       
       }
       };
 
