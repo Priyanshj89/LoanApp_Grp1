@@ -2,8 +2,10 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from 'react-router-dom';
 
 export default function FormValidation() {
+    const Navigate = useNavigate();
     const [empId, setEmpId] = useState(Math.floor(Math.random() * 1000000));
     
     const handleSubmit = async (data) => {
@@ -27,6 +29,7 @@ export default function FormValidation() {
         if (res?.status === 200) {
             alert('User Created');
             setEmpId(() => Math.floor(Math.random() * 1000000));
+            Navigate("/admin/dashboard/custDataManagement");
         }
         else {
             alert('res.status');
@@ -36,8 +39,13 @@ export default function FormValidation() {
     return (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Form onSubmit={(event) => {
+<<<<<<< HEAD
                                 handleSubmit(event.target)
 s
+=======
+                
+                handleSubmit(event.target)
+>>>>>>> e3dfb05f238fdc7fdd2875faaeaea3a9babf99b8
                 event.target.reset();
             }}>
 
