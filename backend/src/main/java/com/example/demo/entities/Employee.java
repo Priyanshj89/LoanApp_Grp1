@@ -1,7 +1,7 @@
 package com.example.demo.entities;
 import javax.validation.constraints.Size;
 
-
+import java.io.Serializable;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="employee")
-public class Employee {
+public class Employee implements Serializable {
 	@Id
 	@Column(name="employee_id")
 	@Size(min=1, message="required")
@@ -85,6 +85,13 @@ public class Employee {
 	public void setDoj(Date doj) {
 		this.doj = doj;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public Employee(String employee_id, String name, String designation, String dept, String gender, Date dob,
 			Date doj,String password) {
 		super();
@@ -98,12 +105,7 @@ public class Employee {
 		this.password=password;
 	}
 	
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	
 	public Employee() {
 		super();
 	}
