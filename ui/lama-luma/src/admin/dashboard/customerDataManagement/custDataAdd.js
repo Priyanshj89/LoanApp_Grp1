@@ -5,7 +5,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function FormValidation() {
     const [empId, setEmpId] = useState(Math.floor(Math.random() * 1000000));
+    
     const handleSubmit = async (data) => {
+        console.log(data);
         const req = {
             'employee_id': empId,
             'name': data.name.value,
@@ -34,8 +36,9 @@ export default function FormValidation() {
     return (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Form onSubmit={(event) => {
+                                handleSubmit(event.target)
+s
                 event.target.reset();
-                handleSubmit(event.target)
             }}>
 
                 <label>Employee ID </label>

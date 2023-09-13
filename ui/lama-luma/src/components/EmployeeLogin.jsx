@@ -41,13 +41,13 @@ export default function EmployeeLogin() {
     const LoginSubmit = (e) => {
         e.preventDefault();
         const formvalidation = handleValidation();
-
+        console.log(email);
         if(formvalidation){
          axios
-        .get(
-          "http://localhost:8080/hello",
+        .post(
+          "http://localhost:8082/employee/login",
           {
-            id: email,
+            employee_id: email,
             password:password
          },
           {
@@ -58,13 +58,14 @@ export default function EmployeeLogin() {
           }
         )
         .then(res => {
-            console.log("Heelo"+res)
-          alert(res.data)
+            if(res.data=="success")
+            navigate("/user/dashboard")
+            else
+            alert("Error");
         })
         .catch(err => {
           console.log(err);
         });
-        navigate("/user/dashboard")
       }
 
       };
