@@ -39,13 +39,8 @@ export default function FormValidation() {
     return (
         <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Form onSubmit={(event) => {
-<<<<<<< HEAD
-                                handleSubmit(event.target)
-s
-=======
                 
                 handleSubmit(event.target)
->>>>>>> e3dfb05f238fdc7fdd2875faaeaea3a9babf99b8
                 event.target.reset();
             }}>
 

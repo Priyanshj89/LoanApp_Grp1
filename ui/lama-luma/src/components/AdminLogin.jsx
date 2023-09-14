@@ -4,12 +4,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import '../styles/AdminLogin.css';
 import Navbar from "./Navbar";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 export default function AdminLogin() {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [passwordError, setpasswordError] = useState("");
     const [emailError, setemailError] = useState("");
+    const[show,setShow]=useState(false);
+    const[ fid,setFid]=useState("");
+    const[name,setName]=useState("");
+    const[newp,setNew]=useState("");
   
     
     const navigate = useNavigate();
@@ -40,6 +46,40 @@ export default function AdminLogin() {
       return formIsValid;
     };
 
+    function handleForgot(e){
+      e.preventDefault();
+      console.log(newp);
+      console.log(name);
+      console.log(fid);
+      axios
+      .put(
+        "http://localhost:8082/admin/updatePass",
+        {
+           admin_id: fid,
+           name:name,
+           password:newp
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin":"*"
+          },
+        }
+      )
+      .then(res => {
+          console.log("Heelo"+res)
+          if(res.data=="updated")
+          {
+            setShow(false);
+            alert("reset")
+          }
+          else
+          alert(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
     
     const loginSubmit = (e) => {
         e.preventDefault();
@@ -109,10 +149,43 @@ export default function AdminLogin() {
                   {passwordError}
                 </small>
                   </div>
-                  <button type="submit" className="prim-btn">
-                    Submit
+                  <button type="submit" className="prim-btn" style={{width:"90%"}}>
+                    Login
                   </button>
                 </form>
+                <>
+                    <Button  onClick={() => setShow(true)}>
+                    Forgot Password?
+                  </Button>
+
+                  <Modal
+                    show={show}
+                    onHide={() => setShow(false)}
+                    dialogClassName="modal-90w"
+                    
+                  >
+                    <Modal.Header closeButton>
+                      <Modal.Title >
+                        Reset Password
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    <form onSubmit={handleForgot}>
+                    <label>Admin Id</label>
+                    <input onChange={(e)=>{setFid(e.target.value)}} /><br />
+                    <label>Name/Email</label>
+                    <input onChange={(e)=>setName(e.target.value)}/>
+                    <br />
+                     <label>New Password</label>
+                    <input onChange={(e)=>setNew(e.target.value)}/>
+                    <br />
+                    <button>Reset</button>
+                    </form>
+                    </Modal.Body>
+      </Modal>
+      </>
+             
+
               </div>
             </div>
           </div>
