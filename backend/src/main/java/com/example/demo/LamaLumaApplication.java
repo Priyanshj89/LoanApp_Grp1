@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-
 @EnableJpaRepositories("com.example.demo.repositories")
 @EntityScan("com.example.demo.entities")
 public class LamaLumaApplication {

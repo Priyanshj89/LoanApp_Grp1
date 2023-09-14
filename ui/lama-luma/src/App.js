@@ -8,9 +8,8 @@ import HomePage from './components/HomePage';
 import EmployeeLogin from "./components/EmployeeLogin";
 import AdminPage from './components/AdminLogin';
 import CustDataManagement from "./admin/dashboard/customerDataManagement/custDataManagement";
-// import CustDataAdd from "./admin/dashboard/customerDataManagement/custDataAdd";
-import CustDataEdit from "./admin/dashboard/customerDataManagement/custDataAdd";
-import SignupForm from "./admin/dashboard/customerDataManagement/custDataAdd";
+import CustDataAdd from "./admin/dashboard/customerDataManagement/custDataAdd";
+import CustDataEdit from "./admin/dashboard/customerDataManagement/custDataEdit";
 
 function App() {
   return (
@@ -22,7 +21,7 @@ function App() {
       <Route path="/user/dashboard/viewItemsPurchased" element={<ViewItemsPurchased />} />
       <Route path="/admin/dashboard/" element={<AdminDashboard />} />
       <Route path= '/admin/dashboard/custDataManagement' element={<CustDataManagement />} />
-      <Route path= '/admin/dashboard/custDataManagement/add' element ={<SignupForm />} />
+      <Route path= '/admin/dashboard/custDataManagement/add' element ={<CustDataAdd />} />
       <Route path= '/admin/dashboard/custDataManagement/edit' element ={<CustDataEdit />} />
       <Route path="/employeelogin" element={<EmployeeLogin />} />
       <Route path="/adminlogin" element={<AdminPage />} />

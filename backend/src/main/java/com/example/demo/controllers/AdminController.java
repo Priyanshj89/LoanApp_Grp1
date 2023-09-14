@@ -18,6 +18,12 @@ import com.example.demo.service.AdminService;
 @RestController
 @RequestMapping("/admin")
 @CrossOrigin("http://localhost:3000")
+
+//class userAlreadyExistsException extends Exception { 
+//	super();
+//	this.message = message;
+//}
+
 public class AdminController {
 	
 	@Autowired
