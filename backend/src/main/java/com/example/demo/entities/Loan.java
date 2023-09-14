@@ -1,8 +1,23 @@
 package com.example.demo.entities;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name="loan")
 public class Loan {
+	@Id
+	@Column(name="loan_id")
 	private String loan_id;
+	
+	@Column(name="loan_type")
 	private String loan_type;
+	
+	@Column(name="column")
 	private int duration;
 	
 	public String getLoan_id() {

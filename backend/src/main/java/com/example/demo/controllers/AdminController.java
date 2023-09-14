@@ -17,6 +17,12 @@ import com.example.demo.repositories.EmployeeRepository;
 @RestController
 @RequestMapping("/admin")
 @CrossOrigin("http://localhost:3000")
+
+//class userAlreadyExistsException extends Exception { 
+//	super();
+//	this.message = message;
+//}
+
 public class AdminController {
 	
 	@Autowired
@@ -38,6 +44,12 @@ public class AdminController {
 			return adminRepo.save(admin);
 		else
 		{
+//			try {
+//				throw new userAlreadyExistsException();
+//			}
+//			catch(userAlreadyExistsException e){
+//				System.out.println(e);
+//			}
 			Admin tempAdmin=adminRepo.findById(admin.getAdmin_id()).get();
 			return tempAdmin;
 		}
