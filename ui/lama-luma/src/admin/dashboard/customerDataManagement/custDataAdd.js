@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function FormValidation() {
+export default function CustDataAdd() {
     const [empId, setEmpId] = useState(Math.floor(Math.random() * 1000000));
     const handleSubmit = async (data) => {
         const req = {
