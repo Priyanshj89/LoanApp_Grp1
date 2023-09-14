@@ -1,13 +1,19 @@
 import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar";
+import "../../styles/AdminLogin.css"
+import"../../styles/AdminDashboard.css"
 
 const Dashboard = () => {
     return (
-        <div>
-            <h1 className="display-1">Admin Dashboard</h1>
+        <div >
+            <Navbar/>
+            <div className="admin-dashboard">
+            <h1>Admin Dashboard</h1>
             <div>
-                <Link to ='/admin/dashboard/custDataManagement'><button className="btn btn-primary btn-lg">Customer Data Management</button></Link>
-                <button className="btn btn-primary btn-lg">Items Master Data</button>
-                <button className="btn btn-primary btn-lg">Loan Card Management</button>
+                <Link to ='/admin/dashboard/custDataManagement'><button className="prim-btn">Customer Data Management</button></Link>
+                <button className="prim-btn">Items Master Data</button>
+                <button className="prim-btn">Loan Card Management</button>
+            </div>
             </div>
         </div>
     )

@@ -1,5 +1,4 @@
 .home{
-    margin:20px;
     text-align: center;
 }
 
@@ -9,6 +8,23 @@
     justify-content: center;
 }
 
-.btn-primary{
-    margin:10px
+.prim-btn{
+    margin:10px;
+    background-color: rgb(254, 162, 41);
+    border-color: rgb(254, 162, 41);
+    color: black;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 0.3rem;
+    border-radius: 1rem;
+}
+
+.prim-btn:hover{
+    margin:10px;
+    background-color: rgb(253, 196, 24);
+    color: black;
+}
+
+.home-card{
+    margin-top: 3rem;
 }
