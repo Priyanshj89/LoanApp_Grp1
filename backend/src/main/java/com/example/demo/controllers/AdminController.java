@@ -13,6 +13,7 @@ import com.example.demo.entities.Admin;
 import com.example.demo.entities.Employee;
 import com.example.demo.repositories.AdminRepository;
 import com.example.demo.repositories.EmployeeRepository;
+import com.example.demo.service.AdminService;
 
 @RestController
 @RequestMapping("/admin")
@@ -26,69 +27,26 @@ import com.example.demo.repositories.EmployeeRepository;
 public class AdminController {
 	
 	@Autowired
-    private AdminRepository adminRepo;
-	
-	@Autowired
-	private EmployeeRepository empRepo;
-	
-	@GetMapping("/add")
-	public String addHello() {
-		return "Hello";
-	}
+    private AdminService adminServ;	
 	
 	@PostMapping("/adduser")
 	public Admin addAddmin(@RequestBody Admin admin) {
-		boolean ifExists =adminRepo.existsById(admin.getAdmin_id());
-		// User already exists check
-		if (!ifExists)
-			return adminRepo.save(admin);
-		else
-		{
-//			try {
-//				throw new userAlreadyExistsException();
-//			}
-//			catch(userAlreadyExistsException e){
-//				System.out.println(e);
-//			}
-			Admin tempAdmin=adminRepo.findById(admin.getAdmin_id()).get();
-			return tempAdmin;
-		}
+		return adminServ.addAdmin(admin);
 	}
 	
 	@PostMapping("/login")
 	public String validateLogin(@RequestBody Admin admin) {
-		Admin tempAdmin=adminRepo.getReferenceById(admin.getAdmin_id());
-		if(tempAdmin.getPassword().equals(admin.getPassword()))
-			return "success";
-		else
-			return "failure";
+		return adminServ.login(admin);
 	}
 	
 	@PutMapping("/updatePass")
 	public String forgotPassword(@RequestBody Admin admin)
 	{
-		Admin tempAdmin=adminRepo.getReferenceById(admin.getAdmin_id());
-		if(tempAdmin.getName().equals(admin.getName()))
-		{
-		tempAdmin.setPassword(admin.getPassword());
-		adminRepo.save(tempAdmin);
-		return "Updated";
-		}
-		else {
-		return "Validation failed";
-		}
+		return adminServ.forgotPass(admin);
 	}
 	
 	@PostMapping("/addCustomer")
 	public Employee addCustomer(@RequestBody Employee employee) {
-		boolean ifExists=empRepo.existsById(employee.getEmployee_id());
-		if(ifExists)
-		{
-			Employee tempEmp=empRepo.getReferenceById(employee.getEmployee_id());
-			return tempEmp;
-		}
-		else {
-			return empRepo.save(employee);
-		}
+		return adminServ.addCustomer(employee);
 	}
 }
