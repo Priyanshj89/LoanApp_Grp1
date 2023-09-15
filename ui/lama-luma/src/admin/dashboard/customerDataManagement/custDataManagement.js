@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import CustDataEdit from "./custDataEdit";
 const CustDataManagement = () => {
     return (
         <div >
@@ -8,6 +9,7 @@ const CustDataManagement = () => {
                 <p>
                     <Link to='/admin/dashboard/custDataManagement/add'><button className='btn btn-primary btn-lg'>Add Employee</button></Link>
                     <Link to='/admin/dashboard/custDataManagement/edit'><button className='btn btn-primary btn-lg'>Edit Employee Data</button></Link>
+                    <CustDataEdit />
                 </p>
             </div>
         </div>

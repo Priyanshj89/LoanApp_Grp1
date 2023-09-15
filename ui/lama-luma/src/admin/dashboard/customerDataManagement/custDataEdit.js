@@ -1,24 +1,61 @@
 import axios from "axios"
 import { useEffect, useState } from "react";
+import {Table} from 'react-bootstrap'
 
-const apiCall = async () => {
-    await axios.get('http://localhost:8082/employee/allEmployees', {
-        headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*"
-        }
-    }).then(res => res);
-}
 
 export default function CustDataEdit() {
     const [userData, setUserData] = useState([]);
+    const apiCall = async () => {
+        await axios.get('http://localhost:8082/employee/allEmployees', {
+            headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*"
+            }
+        }).then(res => {
+            console.log(res.data);
+           setUserData(res?.data);
+        });
+    }
     useEffect(() => {
-        setUserData(async () => await apiCall());
-        // setUserData(() => userData?.data);
+        apiCall();
     }, []);
-    let userList;
-    if (userData?.status === 200 && userData.size() > 0) userList = userData.data.map((element) => <li key={element.employee_id}> {element}</li>);
-    else console.log(userData);
-    console.log(userData);
-    return <div>{userList}</div>;
+    
+    function convert(date){
+        return date?.split("T")[0];
+    }
+    return( <div>
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <td>Employee id</td>
+                    <td>Name</td>
+                    <td>Department</td>
+                    <td>Designation</td>
+                    <td>Gender</td>
+                    <td>Date of birth</td>
+                    <td>Date of Joining</td> 
+                </tr>
+            </thead>
+            <tbody>
+                 
+        {
+        userData.map(item=>{
+                var temp=convert(item.dob);
+                var temp2=convert(item.doj);
+            return(
+            <tr>
+                <td>{item.employee_id}</td>
+                <td>{item.name}</td>
+                <td>{item.dept}</td>
+                <td>{item.designation}</td>
+                 <td>{item.gender}</td>
+                 <td>{temp}</td>
+                  <td>{temp2}</td>
+            </tr>
+
+         ) })
+        }
+            </tbody>
+        </Table>
+       </div>)
 }
