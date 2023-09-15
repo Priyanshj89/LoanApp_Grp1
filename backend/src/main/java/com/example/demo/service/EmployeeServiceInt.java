@@ -8,7 +8,7 @@ public interface EmployeeServiceInt {
 	List<Employee> getAllEmp();
 	Employee getOneEmp(String id);
 	 String deleteEmp(String id);
-	 Employee updateEmployee(Employee emp);
+	 String updateEmployee(Employee emp);
 	 String login(Employee emp);
 	 String forgotPass(Employee emp);
 
