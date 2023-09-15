@@ -9,10 +9,10 @@ const Dashboard = () => {
         <Navbar/>
         <div className="user-dashboard">
         <h1>User Dashboard</h1>
-        <div>
-            <Link to ='/user/dashboard/custDataManagement'><button className="prim-btn">View Your Loans</button></Link>
-            <button className="prim-btn">Apply for a Loan</button>
-            <button className="prim-btn">View Items Purchased</button>
+        <div style={{marginTop:'150px'}}>
+            <Link to ='/user/dashboard/viewLoan'><button className="prim-btn" style={{width:'30%'}}>View Your Loans</button></Link>
+            <Link to ='/user/dashboard/applyLoan'><button className="prim-btn" style={{width:'25%'}}>Apply for a Loan</button></Link>
+            <Link to ='/user/dashboard/viewItemsPurchased'><button className="prim-btn" style={{width:'25%'}}>View Items Purchased</button></Link>
         </div>
         </div>
     </div>);

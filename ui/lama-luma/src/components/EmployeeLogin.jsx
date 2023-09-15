@@ -4,12 +4,18 @@ import axios from 'axios'
 import "bootstrap/dist/css/bootstrap.min.css";
 import '../styles/EmployeeLogin.css'
 import Navbar from "./Navbar";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 export default function EmployeeLogin() {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [passwordError, setpasswordError] = useState("");
     const [emailError, setemailError] = useState("");
+    const[show,setShow]=useState(false);
+    const[ fid,setFid]=useState("");
+    const[name,setName]=useState("");
+    const[newp,setNew]=useState("");
   
     const navigate = useNavigate();
 
@@ -38,17 +44,50 @@ export default function EmployeeLogin() {
   
       return formIsValid;
     };
-
+    function handleForgot(e){
+      e.preventDefault();
+      console.log(newp);
+      console.log(name);
+      console.log(fid);
+      axios
+      .put(
+        "http://localhost:8082/employee/updatePass",
+        {
+           employee_id: fid,
+           name:name,
+           password:newp
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin":"*"
+          },
+        }
+      )
+      .then(res => {
+          console.log("Heelo"+res)
+          if(res.data=="updated")
+          {
+            setShow(false);
+            alert("reset")
+          }
+          else
+          alert(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
     const LoginSubmit = (e) => {
         e.preventDefault();
         const formvalidation = handleValidation();
-
+        console.log(email);
         if(formvalidation){
          axios
-        .get(
-          "http://localhost:8080/hello",
+        .post(
+          "http://localhost:8082/employee/login",
           {
-            id: email,
+            employee_id: email,
             password:password
          },
           {
@@ -59,13 +98,14 @@ export default function EmployeeLogin() {
           }
         )
         .then(res => {
-            console.log("Heelo"+res)
-          alert(res.data)
+            if(res.data=="success")
+            navigate("/user/dashboard")
+            else
+            alert("Error");
         })
         .catch(err => {
           console.log(err);
         });
-        navigate("/user/dashboard")
       }
 
       };
@@ -108,6 +148,37 @@ export default function EmployeeLogin() {
                   </button>
                   <div onClick={()=>{navigate('/adminlogin')}} style={{padding:"0.5rem",cursor:"pointer",fontWeight:"500"}}>For Admin Login Click Here</div>
                 </form>
+                <>
+                    <Button  onClick={() => setShow(true)}>
+                    Forgot Password?
+                  </Button>
+
+                  <Modal
+                    show={show}
+                    onHide={() => setShow(false)}
+                    dialogClassName="modal-90w"
+                    
+                  >
+                    <Modal.Header closeButton>
+                      <Modal.Title >
+                        Reset Password
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    <form onSubmit={handleForgot}>
+                    <label>Employee Id</label>
+                    <input onChange={(e)=>{setFid(e.target.value)}} /><br />
+                    <label>Name/Email</label>
+                    <input onChange={(e)=>setName(e.target.value)}/>
+                    <br />
+                     <label>New Password</label>
+                    <input onChange={(e)=>setNew(e.target.value)}/>
+                    <br />
+                    <button>Reset</button>
+                    </form>
+                    </Modal.Body>
+      </Modal>
+      </>
               </div>
             </div>
           </div>
