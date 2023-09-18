@@ -34,9 +34,21 @@ public class EmployeeService implements EmployeeServiceInt {
 		
 		return "error";
 	}
-	public Employee updateEmployee(Employee emp) {
+	public String updateEmployee(Employee emp) {
 		boolean ifExists=empRepo.existsById(emp.getEmployee_id());
-		return empRepo.save(emp);
+		if(ifExists) {
+			Employee tempEmp=empRepo.findById(emp.getEmployee_id()).get();
+			tempEmp.setDept(emp.getDept());
+			tempEmp.setDesignation(emp.getDesignation());
+			tempEmp.setDob(emp.getDob());
+			tempEmp.setDoj(emp.getDoj());
+			tempEmp.setGender(emp.getGender());
+			tempEmp.setName(emp.getName());
+			empRepo.save(tempEmp);
+			return "updated";
+		}
+		else
+		return "error";
 	}
 	
 	public String login(Employee emp) {
