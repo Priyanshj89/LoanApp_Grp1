@@ -1,5 +1,4 @@
 package com.example.demo.entities;
-
 import java.util.ArrayList;
 
 import jakarta.persistence.Column;
@@ -55,44 +54,55 @@ public class Item {
 	public String getDesc() {
 		return desc;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
+
+	public void setDescription(String desc) {
+		this.description = desc;
 	}
-	public String getStatus() {
-		return status;
+
+	public String getItem_name() {
+		return item_name;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
 	}
+
 	public String getItem_make() {
 		return item_make;
 	}
+
 	public void setItem_make(String item_make) {
 		this.item_make = item_make;
 	}
+
 	public String getCategory() {
 		return category;
 	}
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
 	public int getValuation() {
 		return valuation;
 	}
+
 	public void setValuation(int valuation) {
 		this.valuation = valuation;
 	}
-	public Item(String item_id, String desc, String status, String item_make, String category, int valuation) {
+
+	public Item(String item_id, String description, String status, String item_make, String category, int valuation) {
 		super();
 		this.item_id = item_id;
-		this.desc = desc;
-		this.status = status;
+		this.description = description;
+//		this.status = status;
 		this.item_make = item_make;
 		this.category = category;
 		this.valuation = valuation;
 	}
+
 	public Item() {
 		super();
 	}
-	
+
 }
