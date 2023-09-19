@@ -10,6 +10,7 @@ import AdminPage from './components/AdminLogin';
 import CustDataManagement from "./admin/dashboard/customerDataManagement/custDataManagement";
 import CustDataAdd from "./admin/dashboard/customerDataManagement/custDataAdd";
 import CustDataEdit from "./admin/dashboard/customerDataManagement/custDataEdit";
+import ItemMaster from "./admin/dashboard/itemMaster"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/user/dashboard/viewItemsPurchased" element={<ViewItemsPurchased />} />
       <Route path="/admin/dashboard/" element={<AdminDashboard />} />
       <Route path= '/admin/dashboard/custDataManagement' element={<CustDataManagement />} />
+      <Route path= '/admin/dashboard/itemMaster' element={<ItemMaster />} />
       <Route path= '/admin/dashboard/custDataManagement/add' element ={<CustDataAdd />} />
       <Route path= '/admin/dashboard/custDataManagement/edit' element ={<CustDataEdit />} />
       <Route path="/employeelogin" element={<EmployeeLogin />} />
