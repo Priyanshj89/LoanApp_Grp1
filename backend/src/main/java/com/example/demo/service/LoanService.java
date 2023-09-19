@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Employee;
+import com.example.demo.entities.Item;
 import com.example.demo.entities.Loan;
 import com.example.demo.repositories.EmployeeRepository;
 import com.example.demo.repositories.ItemRepository;
@@ -17,6 +18,7 @@ public class LoanService implements LoanServiceInt {
 	
 	@Autowired
 	private LoanRepository loanRepo;
+	@Autowired
 	private ItemRepository itemRepo;
 	
 	public List<Loan> getAllLoan(){
@@ -35,9 +37,9 @@ public class LoanService implements LoanServiceInt {
 			}
 	  }
 	
-//	public Loan getOneLoan(String id){
-//		Employee tempEmp= loanRepo.findByEmployee_Id(id).get();
-//		return tempEmp;
-//	}
+	public List<?> getOneLoan(String id){
+		List<?> tempItem= itemRepo.findByEmployee_id(id);
+		return tempItem;
+	}
 
 }
