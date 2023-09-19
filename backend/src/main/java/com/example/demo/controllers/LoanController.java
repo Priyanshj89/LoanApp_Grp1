@@ -38,4 +38,10 @@ public class LoanController {
 		//System.out.println(loan.getItem_id());
 		return loanServ.addLoan(loan);
 	}
+	
+	@PostMapping("/getOneLoan")
+	public List<?> getOneLoan(@RequestBody String empid) {
+		//System.out.println(loan.getItem_id());
+		return loanServ.getOneLoan(empid);
+	}
 }

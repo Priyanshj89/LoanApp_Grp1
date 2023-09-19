@@ -27,6 +27,7 @@ public class Loan {
 	@Column(name="loan_id")
 	private String loan_id;
 		
+<<<<<<< HEAD
 
 	
 	@OneToMany(mappedBy="loan_id") 
@@ -34,6 +35,23 @@ public class Loan {
 	private Set<Item> item;
 	
 
+=======
+//	@ManyToOne //Works
+//	@JoinColumn(name = "employee_id", referencedColumnName="employee_id")
+//	private Employee emp;
+	
+//	@Column(name="employee_id") //FK
+//	private String employee_id;
+	
+	@OneToMany(mappedBy="loan_id") // onetomany
+//	@JoinColumn(name = "item_id", referencedColumnName="item_id")
+//	@JsonFormat(shape = JsonFormat.Shape.STRING)
+	private Set<Item> item;
+	
+//	@Column(name="item_id") //FK
+//	private String item_id;
+	
+>>>>>>> cef1dfc0f7dae384c7ff29a89f6493f81f970eae
 	@Column(name="issue_date")
 	@JsonFormat(pattern="yyyy-mm-dd")
 	private Date issue_date;
