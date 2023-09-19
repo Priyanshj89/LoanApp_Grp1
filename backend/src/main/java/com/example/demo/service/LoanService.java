@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entities.Employee;
 import com.example.demo.entities.Loan;
+import com.example.demo.repositories.EmployeeRepository;
 import com.example.demo.repositories.LoanRepository;
 
 @Service
@@ -15,6 +16,7 @@ public class LoanService implements LoanServiceInt {
 	
 	@Autowired
 	private LoanRepository loanRepo;
+	private EmployeeRepository empRepo;
 	
 	public List<Loan> getAllLoan(){
 		return loanRepo.findAll();
@@ -31,5 +33,10 @@ public class LoanService implements LoanServiceInt {
 				return loanRepo.save(loan);
 			}
 	  }
+	
+	public Loan getOneLoan(String id){
+		Employee tempEmp= empRepo.findById(id).get();
+		return tempEmp;
+	}
 
 }
