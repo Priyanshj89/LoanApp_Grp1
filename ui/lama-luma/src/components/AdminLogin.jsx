@@ -154,31 +154,30 @@ export default function AdminLogin() {
                   </button>
                 </form>
                 <>
-                    <Button  onClick={() => setShow(true)}>
+                  <button className="sec-btn" onClick={() => setShow(true)}>
                     Forgot Password?
-                  </Button>
+                  </button>
 
                   <Modal
                     show={show}
                     onHide={() => setShow(false)}
                     dialogClassName="modal-90w"
-                    
                   >
                     <Modal.Header closeButton>
                       <Modal.Title >
                         Reset Password
                       </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
+                    <Modal.Body style={{display:"inline-block", width:"10rem"}}>
                     <form onSubmit={handleForgot}>
                     <label>Admin Id</label>
-                    <input onChange={(e)=>{setFid(e.target.value)}} /><br />
+                    <input onChange={(e)=>{setFid(e.target.value)}} />
                     <label>Name/Email</label>
                     <input onChange={(e)=>setName(e.target.value)}/>
-                    <br />
-                     <label>New Password</label>
+                    <label>New Password</label>
                     <input onChange={(e)=>setNew(e.target.value)}/>
-                    <br />
+                    <br/>
+                    <br/>
                     <button>Reset</button>
                     </form>
                     </Modal.Body>
