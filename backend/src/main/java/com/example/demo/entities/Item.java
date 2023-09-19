@@ -56,16 +56,16 @@ public class Item {
 	}
 
 	public void setDescription(String desc) {
-		this.description = desc;
+		this.desc= desc;
 	}
 
-	public String getItem_name() {
-		return item_name;
-	}
+//	public String getItem_name() {
+//		return item_name;
+//	}
 
-	public void setItem_name(String item_name) {
-		this.item_name = item_name;
-	}
+//	public void setItem_name(String item_name) {
+//		this.item_name = item_name;
+//	}
 
 	public String getItem_make() {
 		return item_make;
@@ -94,7 +94,7 @@ public class Item {
 	public Item(String item_id, String description, String status, String item_make, String category, int valuation) {
 		super();
 		this.item_id = item_id;
-		this.description = description;
+		this.desc= description;
 //		this.status = status;
 		this.item_make = item_make;
 		this.category = category;
