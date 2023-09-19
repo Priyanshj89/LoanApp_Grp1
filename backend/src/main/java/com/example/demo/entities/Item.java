@@ -1,18 +1,57 @@
 package com.example.demo.entities;
 
+import java.util.ArrayList;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="item")
 public class Item {
+	// loan id, userid, IsApplied boolean, isApproved
+	@ManyToOne
+	@JoinColumn(name = "loan_id", referencedColumnName="loan_id")
+	private Loan loan_id;
+	
+	@ManyToOne
+	@JoinColumn(name = "employee_id", referencedColumnName="employee_id")
+	private Employee emp_id;
+	
+	@Id
+	@Column(name="item_id")
 	private String item_id;
+	
+	@Column(name="is_applied")
+	private boolean is_applied;
+	
+	@Column(name="is_approved")
+	private boolean isApproved;
+	
+	@Column(name="description")
 	private String desc;
+	
+	@Column(name="status")
 	private String status;
+	
+	@Column(name="item_make")
 	private String item_make;
+	
+	@Column(name="item_category")
 	private String category;
+	
+	@Column(name="valuation")
 	private int valuation;
-	public String getItem_id() {
-		return item_id;
-	}
-	public void setItem_id(String item_id) {
-		this.item_id = item_id;
-	}
+//	
+//	public String getItem_id() {
+//		return item_id;
+//	}
+//	public void setItem_id(String item_id) {
+//		this.item_id = item_id;
+//	}
 	public String getDesc() {
 		return desc;
 	}
