@@ -98,8 +98,10 @@ export default function EmployeeLogin() {
           }
         )
         .then(res => {
-            if(res.data=="success")
+            if(res.data=="success"){
+            localStorage.setItem("empid",email);
             navigate("/user/dashboard")
+            }
             else
             alert("Error");
         })

@@ -29,6 +29,29 @@ const ApplyLoan = () => {
           //alert("Item addition failed");
         });
     },[])
+
+    const handleLoan = (item) =>{
+      console.log(item)
+      axios
+        .post(
+          "http://localhost:8082/user/addItem",
+          {
+            employee_id:localStorage.getItem("empid"),
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin":"*"
+            },
+          }
+        )
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
     
     return <div>
         <Navbar/>
@@ -40,6 +63,7 @@ const ApplyLoan = () => {
                     <td>Valuation</td>
                     <td>Item Make</td>
                     <td>Description</td>
+                    <td><button onClick={()=>handleLoan()}>Apply</button></td> 
                 </tr>
             </thead>
             <tbody>
@@ -53,8 +77,7 @@ const ApplyLoan = () => {
                 <td>{item.valuation}</td>
                 <td>{item.item_make}</td>
                  <td>{item.description}</td>
-              
-                 
+                 <td><button onClick={()=>handleLoan(item)}>Apply</button></td> 
             </tr>
 
          ) })
