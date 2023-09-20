@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.ItemDto;
 import com.example.demo.entities.Item;
 import com.example.demo.service.ItemService;
 
@@ -30,7 +31,7 @@ public class ItemController {
 	}
 	
 	@PostMapping("/addItem")
-	ResponseEntity<String> addItem(@RequestBody Item item){
+	ResponseEntity<String> addItem(@RequestBody ItemDto item){
 		return new ResponseEntity<>(itemService.addItem(item), HttpStatus.OK);
 	}
 	

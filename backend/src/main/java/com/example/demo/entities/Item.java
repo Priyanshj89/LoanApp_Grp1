@@ -5,6 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -20,9 +24,57 @@ public class Item {
 	}
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "item_id")
-	private String item_id;
+	private long item_id;
+	
+	@ManyToOne
+	@JoinColumn(name ="loan_id")
+	Loan loan;
+	
+	@OneToOne
+	@JoinColumn(name = "employee_id")
+	Employee employee;
+
+	public Loan getLoan() {
+		return loan;
+	}
+
+	public void setLoan(Loan loan) {
+		this.loan = loan;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public boolean isIs_applied() {
+		return is_applied;
+	}
+
+	public void setIs_applied(boolean is_applied) {
+		this.is_applied = is_applied;
+	}
+
+	public boolean isIs_approved() {
+		return is_approved;
+	}
+
+	public void setIs_approved(boolean is_approved) {
+		this.is_approved = is_approved;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	@Column(name = "item_name")
 	private String item_name;
@@ -38,12 +90,22 @@ public class Item {
 
 	@Column(name = "valuation")
 	private int valuation;
+	
+	@Column(name = "is_applied")
+	private boolean is_applied;
+	
+	@Column(name = "is_approved")
+	private boolean is_approved;
+	
+	@Column(name = "status")
+	private String status;
+	
 
-	public String getItem_id() {
+	public long getItem_id() {
 		return item_id;
 	}
 
-	public void setItem_id(String item_id) {
+	public void setItem_id(long item_id) {
 		this.item_id = item_id;
 	}
 
@@ -87,7 +149,7 @@ public class Item {
 		this.valuation = valuation;
 	}
 
-	public Item(String item_id, String description, String status, String item_make, String category, int valuation) {
+	public Item(long item_id, String description, String status, String item_make, String category, int valuation) {
 		super();
 		this.item_id = item_id;
 		this.description = description;
