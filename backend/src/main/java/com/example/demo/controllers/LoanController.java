@@ -15,13 +15,31 @@ import com.example.demo.entities.Employee;
 import com.example.demo.entities.Loan;
 import com.example.demo.repositories.EmployeeRepository;
 import com.example.demo.repositories.LoanRepository;
+import com.example.demo.service.EmployeeService;
+import com.example.demo.service.LoanService;
 
 @RestController
 @RequestMapping("/loan")
 public class LoanController {
 	
 	@Autowired
-	private LoanRepository loanRepo;
+	private LoanService loanServ;
 	
-
+	
+	@GetMapping("/allLoans")
+	public List<Loan> allLoan(){
+		return loanServ.getAllLoan();
+	}
+	
+	@PostMapping("/addLoan")
+	public Loan addLoan(@RequestBody Loan loan) {
+		//System.out.println(loan.getItem_id());
+		return loanServ.addLoan(loan);
+	}
+	
+	@PostMapping("/getOneLoan")
+	public List<?> getOneLoan(@RequestBody String empid) {
+		//System.out.println(loan.getItem_id());
+		return loanServ.getOneLoan(empid);
+	}
 }
