@@ -17,7 +17,7 @@ public class Loan {
 	@Column(name="loan_type")
 	private String loan_type;
 	
-	@Column(name="column")
+	@Column(name="duration")
 	private int duration;
 	
 	public String getLoan_id() {

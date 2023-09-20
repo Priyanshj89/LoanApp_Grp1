@@ -20,7 +20,7 @@ public class Item {
 	@Override
 	public String toString() {
 		return "Item [item_id=" + item_id + ", item_name=" + item_name + ", description=" + description + ", item_make="
-				+ item_make + ", category=" + category + ", valuation=" + valuation + "]";
+				+ item_make + ", item_category=" + item_category + ", valuation=" + valuation + "]";
 	}
 
 	@Id
@@ -68,14 +68,6 @@ public class Item {
 		this.is_approved = is_approved;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	@Column(name = "item_name")
 	private String item_name;
 
@@ -85,8 +77,8 @@ public class Item {
 	@Column(name = "item_make")
 	private String item_make;
 
-	@Column(name = "category")
-	private String category;
+	@Column(name = "item_category")
+	private String item_category;
 
 	@Column(name = "valuation")
 	private int valuation;
@@ -97,8 +89,8 @@ public class Item {
 	@Column(name = "is_approved")
 	private boolean is_approved;
 	
-	@Column(name = "status")
-	private String status;
+	@Column(name = "issue_status")
+	private String issue_status;
 	
 
 	public long getItem_id() {
@@ -133,14 +125,6 @@ public class Item {
 		this.item_make = item_make;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	public int getValuation() {
 		return valuation;
 	}
@@ -149,14 +133,36 @@ public class Item {
 		this.valuation = valuation;
 	}
 
-	public Item(long item_id, String description, String status, String item_make, String category, int valuation) {
+	public Item(long item_id, Loan loan, Employee employee, String item_name, String description, String item_make,
+			String item_category, int valuation, boolean is_applied, boolean is_approved, String issue_status) {
 		super();
 		this.item_id = item_id;
+		this.loan = loan;
+		this.employee = employee;
+		this.item_name = item_name;
 		this.description = description;
-//		this.status = status;
 		this.item_make = item_make;
-		this.category = category;
+		this.item_category = item_category;
 		this.valuation = valuation;
+		this.is_applied = is_applied;
+		this.is_approved = is_approved;
+		this.issue_status = issue_status;
+	}
+
+	public String getItem_category() {
+		return item_category;
+	}
+
+	public void setItem_category(String item_category) {
+		this.item_category = item_category;
+	}
+
+	public String getIssue_status() {
+		return issue_status;
+	}
+
+	public void setIssue_status(String issue_status) {
+		this.issue_status = issue_status;
 	}
 
 	public Item() {
