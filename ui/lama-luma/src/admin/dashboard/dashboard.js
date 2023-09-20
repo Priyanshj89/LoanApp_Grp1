@@ -12,7 +12,7 @@ const Dashboard = () => {
             <div>
                 <Link to ='/admin/dashboard/custDataManagement'><button className="prim-btn">Customer Data Management</button></Link>
                 <Link to= '/admin/dashboard/LoanCardManagement'><button className="prim-btn">Loan Card Management</button></Link>
-                <button className="prim-btn">Items Master Data</button>
+                <Link to= '/admin/dashboard/ItemMaster'><button className="prim-btn">Item Master</button></Link>
                 
             </div>
             </div>
