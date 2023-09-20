@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import CustDataEdit from "./custDataEdit";
+import Navbar from "../../../components/Navbar"
 const CustDataManagement = () => {
     return (
         <div >
-            <h1 className="display-1">Customer Data Management</h1>
+            <Navbar/>
+            <h4 className="display-1">Customer Data Management</h4>
             <br />
             <div >
                 <p>

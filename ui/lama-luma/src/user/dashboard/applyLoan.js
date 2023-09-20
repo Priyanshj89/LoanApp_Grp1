@@ -32,6 +32,7 @@ const ApplyLoan = () => {
 
     const handleLoan = (item) =>{
       console.log(item)
+      console.log(localStorage.getItem("empid"))
       axios
         .post(
           "http://localhost:8082/user/addItem",
@@ -58,12 +59,12 @@ const ApplyLoan = () => {
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <td>Category</td>
-                    <td>Item Name</td>
-                    <td>Valuation</td>
-                    <td>Item Make</td>
-                    <td>Description</td>
-                    <td><button onClick={()=>handleLoan()}>Apply</button></td> 
+                    <th>Item Id</th>
+                    <th>Category</th>
+                    <th>Valuation</th>
+                    <th>Item Make</th>
+                    <th>Description</th>
+                    <th>Apply for Loan</th> 
                 </tr>
             </thead>
             <tbody>
@@ -72,8 +73,8 @@ const ApplyLoan = () => {
         items.map(item=>{
             return(
             <tr>
+                <td>{item.item_id}</td>
                 <td>{item.category}</td>
-                <td>{item.item_name}</td>
                 <td>{item.valuation}</td>
                 <td>{item.item_make}</td>
                  <td>{item.description}</td>
