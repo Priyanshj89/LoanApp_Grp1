@@ -27,21 +27,13 @@ public class Loan {
 	@Column(name="loan_id")
 	private String loan_id;
 		
-//	@ManyToOne //Works
-//	@JoinColumn(name = "employee_id", referencedColumnName="employee_id")
-//	private Employee emp;
+
 	
-//	@Column(name="employee_id") //FK
-//	private String employee_id;
-	
-	@OneToMany(mappedBy="loan_id") // onetomany
-//	@JoinColumn(name = "item_id", referencedColumnName="item_id")
-//	@JsonFormat(shape = JsonFormat.Shape.STRING)
+	@OneToMany(mappedBy="loan_id") 
+
 	private Set<Item> item;
 	
-//	@Column(name="item_id") //FK
-//	private String item_id;
-	
+
 	@Column(name="issue_date")
 	@JsonFormat(pattern="yyyy-mm-dd")
 	private Date issue_date;
@@ -87,11 +79,30 @@ public class Loan {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-	public Loan(String loan_id, String loan_type, int duration) {
+	public void setIssue_date(Date issue_date) {
+		this.issue_date=issue_date;
+	}
+	
+	public Date getIssue_date() {
+		return issue_date;
+	}
+	public Date getReturn_date() {
+		return return_date;
+	}
+	
+	public void setReturn_date(Date return_date) {
+		this.return_date=return_date;
+	}
+	
+	
+	
+	public Loan(String loan_id, String loan_type, int duration,Date issue_date, Date return_date) {
 		super();
 		this.loan_id = loan_id;
 		this.loan_type = loan_type;
 		this.duration = duration;
+		this.issue_date=issue_date;
+		this.return_date=return_date;
 	}
 	public Loan() {
 		super();

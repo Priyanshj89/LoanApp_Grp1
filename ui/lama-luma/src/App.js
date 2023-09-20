@@ -11,6 +11,7 @@ import CustDataManagement from "./admin/dashboard/customerDataManagement/custDat
 import CustDataAdd from "./admin/dashboard/customerDataManagement/custDataAdd";
 import CustDataEdit from "./admin/dashboard/customerDataManagement/custDataEdit";
 import ItemMaster from "./admin/dashboard/itemMaster"
+import LoanCard from "./admin/dashboard/LoanCard"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path= '/admin/dashboard/itemMaster' element={<ItemMaster />} />
       <Route path= '/admin/dashboard/custDataManagement/add' element ={<CustDataAdd />} />
       <Route path= '/admin/dashboard/custDataManagement/edit' element ={<CustDataEdit />} />
+      <Route path="/admin/dashboard/LoanCardManagement" element={<LoanCard/>} />
       <Route path="/employeelogin" element={<EmployeeLogin />} />
       <Route path="/adminlogin" element={<AdminPage />} />
     </Routes>

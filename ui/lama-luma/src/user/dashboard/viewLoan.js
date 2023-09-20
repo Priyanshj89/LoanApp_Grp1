@@ -6,7 +6,9 @@ import {Table} from 'react-bootstrap';
 const ViewLoan = () => {
     const [loans, setLoans] = useState([])
     useEffect(()=>{
-        axios.get('http://localhost:8082/employee/allloans', {
+        axios.post('http://localhost:8082/loan/getOneLoan',{
+            employee_id:"1"
+        }, {
             headers: {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*"
@@ -21,12 +23,12 @@ const ViewLoan = () => {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <td>Employee id</td>
-                        <td>Name</td>
-                        <td>Department</td>
-                        <td>Designation</td>
-                        <td>Gender</td>
-                        <td>Date of birth</td>
+                        <td>Loan id</td>
+                        <td>Issue Date</td>
+                        <td>Return Date</td>
+                        <td>Type</td>
+                        <td>Duration</td>
+                        <td> Status</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,11 +37,13 @@ const ViewLoan = () => {
                     loans.map(item=>{
                         return(
                         <tr>
-                            <td>{item.employee_id}</td>
-                            <td>{item.name}</td>
-                            <td>{item.dept}</td>
-                            <td>{item.designation}</td>
-                            <td>{item.gender}</td>        
+                            <td>{item[0]}</td>
+                            <td>{item[1]}</td>
+                            <td>{item[2]}</td>
+                            <td>{item[3]}</td>
+                            <td>{item[4]}</td>        
+                            <td>{item[5]}</td>        
+
                         </tr>
                     )})
                     }
