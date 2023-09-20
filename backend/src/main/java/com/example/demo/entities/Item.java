@@ -1,6 +1,8 @@
 package com.example.demo.entities;
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -16,6 +18,54 @@ public class Item {
 	@JoinColumn(name = "loan_id", referencedColumnName="loan_id")
 	private Loan loan_id;
 	
+	public Item(Loan loan_id, Employee emp_id, String item_id, boolean is_applied, boolean isApproved, String desc,
+			String status, String item_make, String category, int valuation) {
+		super();
+		this.loan_id = loan_id;
+		this.emp_id = emp_id;
+		this.item_id = item_id;
+		this.is_applied = is_applied;
+		this.isApproved = isApproved;
+		this.desc = desc;
+		this.status = status;
+		this.item_make = item_make;
+		this.category = category;
+		this.valuation = valuation;
+	}
+	public Loan getLoan_id() {
+		return loan_id;
+	}
+	public void setLoan_id(Loan loan_id) {
+		this.loan_id = loan_id;
+	}
+	public Employee getEmp_id() {
+		return emp_id;
+	}
+	public void setEmp_id(Employee emp_id) {
+		this.emp_id = emp_id;
+	}
+	public boolean isIs_applied() {
+		return is_applied;
+	}
+	public void setIs_applied(boolean is_applied) {
+		this.is_applied = is_applied;
+	}
+	public boolean isApproved() {
+		return isApproved;
+	}
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "employee_id", referencedColumnName="employee_id")
 	private Employee emp_id;
@@ -39,6 +89,7 @@ public class Item {
 	@Column(name="item_make")
 	private String item_make;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING)
 	@Column(name="item_category")
 	private String category;
 	
@@ -88,16 +139,6 @@ public class Item {
 	}
 
 	public void setValuation(int valuation) {
-		this.valuation = valuation;
-	}
-
-	public Item(String item_id, String description, String status, String item_make, String category, int valuation) {
-		super();
-		this.item_id = item_id;
-		this.desc= description;
-//		this.status = status;
-		this.item_make = item_make;
-		this.category = category;
 		this.valuation = valuation;
 	}
 
