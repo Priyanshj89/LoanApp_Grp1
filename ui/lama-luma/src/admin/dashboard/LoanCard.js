@@ -43,7 +43,7 @@ const LoanCard = () => {
                 setLid("L"+temp);
                 setTime("");
                 setType("Furniture");
-                //getAllLoans();
+                getAllLoans();
                 console.log("get worked")
              }
          })
