@@ -1,46 +1,77 @@
 import { useState } from "react";
 import Navbar from "../../components/Navbar"
 import '../../styles/ApplyLoan.css'
+import axios from 'axios'
+import {Table} from 'react-bootstrap'
+
 
 export default function ItemMaster(){
+        const [items,setItems]=useState();
 
-    function handleSubmit(e){
+        async function getAllItems(e){
+                    e.preventDefault();
+            await axios.get("http://localhost:8082/item/allItems",{
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin":"*"
+            }).then(res=>{
+                setItems(res.data);
+                console.log(res.data);
+            }).catch(err=>{
+                console.log(err);
+            })
+        }
+
+    async function handleSubmit(e){
         e.preventDefault();
         console.log(empid);
         console.log(value);
         console.log(desc);
         console.log(make);
         console.log(category);
+        await axios.post("http://localhost:8082/item/addItem",{
+            description:desc,
+            item_category:category,
+            item_make:make,
+            valuation:value
+        },{
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin":"*"
+        }).then(res=>{
+            if(res.status=="200"){
+                setCategory("Furniture");
+                setMake("wooden");
+                setValue("");
+                setDesc("");
+                getAllItems();
+            }
+        })
     }
     
 
     const [empid,setempid]=useState("");
     const [value,setValue]=useState("");
     const [desc,setDesc]=useState("");
-    const [make,setMake]=useState("");
-    const [category,setCategory]=useState("");
+    const [make,setMake]=useState("wooden");
+    const [category,setCategory]=useState("furniture");
     return <div>
         <Navbar/>
         <div className="applyloan-wrapper">
-        <h2>Apply For a Loan</h2>
+        <h2 tyle={{marginLeft:'50px'}}>Add a new Item</h2>
         <br/>
         <div className="applyLoan">
             <form onSubmit={handleSubmit}> 
-            <div className="loan-group"> 
-                <label for="emp_id">Employee Id:</label>
-                <input id="emp_id"  onChange={(e)=>{setempid(e.target.value)}}/>
-            </div>
+            
             <div className="loan-group"> 
                 <label for="desc">Item Description:</label>
-                <input id="desc"  onChange={(e)=>{setDesc(e.target.value)}}/>
+                <input id="desc" value={desc} onChange={(e)=>{setDesc(e.target.value)}}/>
             </div>
             <div className="loan-group"> 
                 <label for="itemValue">Item Value:</label>
-                <input id="itemValue"  onChange={(e)=>{setValue(e.target.value)}}/>
+                <input id="itemValue" value={value} onChange={(e)=>{setValue(e.target.value)}}/>
             </div>
             <div className="loan-group"> 
                 <label for="itemMake">Item Make:</label>
-                <select id="itemMake" onChange={(e)=>setMake(e.target.value)}>
+                <select id="itemMake" value={make} onChange={(e)=>setMake(e.target.value)}>
                     <option value="Wooden">Wooden</option>
                     <option value="Steel">Steel</option>
                     <option value="Hardware">Hardware</option>
@@ -49,7 +80,7 @@ export default function ItemMaster(){
             </div>
             <div className="loan-group"> 
                 <label for="itemCategory">Item Category:</label>
-                <select id="itemCategory" onChange={(e)=>setCategory(e.target.value)}>
+                <select id="itemCategory" value={category} onChange={(e)=>setCategory(e.target.value)}>
                     <option value="Furniture">Furniture</option>
                     <option value="Stationary">Stationary</option>
                     <option value="Appliances">Appliances</option>
@@ -58,7 +89,37 @@ export default function ItemMaster(){
             </div>
                 <button className="loan-btn">Apply</button>
             </form>
+
         </div>
         </div>
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <td>Loan id</td>
+                    <td>Loan Type</td>
+                    <td>Issue Date</td>
+                    <td>Return Date</td>
+                    <td>Duration</td>
+                </tr>
+            </thead>
+            <tbody>
+                 
+        {
+        items?.map(item=>{
+             
+            return(
+            <tr>
+                <td>{item.loan_id}</td>
+                <td>{item.loan_type}</td>
+                <td>{item.issue_date}</td>
+                <td>{item.return_date}</td>
+                 <td>{item.duration}</td>
+               
+            </tr>
+
+         ) })
+        }
+            </tbody>
+        </Table>
         </div>
 }
