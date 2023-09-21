@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.EmployeeDto;
 import com.example.demo.dto.ItemDto;
 import com.example.demo.entities.Item;
 import com.example.demo.repositories.ItemRepository;
@@ -18,6 +19,10 @@ public class ItemService implements ItemServiceInt {
 	
 	public List<Item> getAllItems(){
 		return itemRepository.findAllEmployeeNull();
+	}
+	
+	public List<Item> getItemsPurchased(EmployeeDto empDto){
+		return itemRepository.findAllItemsPurchased(empDto.getEmployee_id());
 	}
 
 	public String addItem(ItemDto itemDto) {
@@ -36,4 +41,5 @@ public class ItemService implements ItemServiceInt {
 //			return "Item Exists";
 //		}
 	}
+	
 }
