@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import CustDataEdit from "./custDataEdit";
 import Navbar from "../../../components/Navbar"
+import "../../../styles/AdminLogin.css"
 const CustDataManagement = () => {
     return (
         <div >
@@ -9,7 +10,7 @@ const CustDataManagement = () => {
             <br />
             <div >
                 <p>
-                    <Link to='/admin/dashboard/custDataManagement/add'><button className='btn btn-primary btn-lg'>Add Employee</button></Link>
+                    <Link to='/admin/dashboard/custDataManagement/add'><button className='prim-btn'>Add Employee</button></Link>
                     <CustDataEdit />
                 </p>
             </div>

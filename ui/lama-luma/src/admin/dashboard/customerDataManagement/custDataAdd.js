@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Form, Button } from 'semantic-ui-react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../../../components/Navbar';
+import "../../../styles/CustomerData.css"
 
 export default function CustDataAdd() {
     const Navigate = useNavigate();
@@ -37,13 +39,17 @@ export default function CustDataAdd() {
         console.log(req);
     }
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div>
+            <Navbar/>
+        <div style={{ display: 'flex', justifyContent: 'center' }} className='addcustomer-card'>
+            
             <Form onSubmit={(event) => {
                 
                 handleSubmit(event.target)
                 event.target.reset();
             }}>
-
+                <div style={{display:"flex"}}>
+                <div style={{padding:"2rem"}}>
                 <label>Employee ID </label>
                 <div className="form-control"
                 >{empId}</div>
@@ -80,6 +86,8 @@ export default function CustDataAdd() {
                         {...("Designation", { required: true, maxLength: 10 })}
                     />
                 </Form.Field>
+                </div>
+                <div style={{paddingTop:"1.4rem"}}>
                 <Form.Field className='form-group'>
                     <label>Department</label>
                     <input
@@ -129,9 +137,11 @@ export default function CustDataAdd() {
                         {...("DOJ", { required: true })}
                     />
                 </Form.Field>
-
-                <Button type='submit' className='btn btn-primary'>Submit</Button>
+                </div>
+                </div>
+                <Button type='submit' className='sec-btn'>Submit</Button>
             </Form>
         </div >
+        </div>
     )
 }

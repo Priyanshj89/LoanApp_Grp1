@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import {Table} from 'react-bootstrap'
+import Navbar from '../../components/Navbar';
+import "../../styles/LoanCard.css"
+import "../../styles/AdminLogin.css"
 
 const LoanCard = () => {
     const [type,setType]=useState("Furniture");
@@ -57,9 +60,12 @@ const LoanCard = () => {
        getAllLoans();
     },[])
     return (
-        <div className='LoanCard' style={{width:'100%',display:'flex'}}>
-            <div style={{borderRight:'2px solid black',width:'50%'}}>
-            <form style={{justifyContent:'center',border:'2px'}} onSubmit={handleLoan}>
+        <div>
+            <Navbar/>
+        <div className='LoanCard' style={{width:'100%',display:'flex',padding:"2rem"}}>
+            <div className='border-st'>
+            <form style={{justifyContent:'center',border:'2px',display:"flex",flexDirection:"column"}} onSubmit={handleLoan}>
+                    <div className='form-data-c'>
                     <label>Loan Type</label>
                     <select value={type}  onChange={(e)=>setType(e.target.value)}>
                         <option>Furniture</option>
@@ -67,22 +73,29 @@ const LoanCard = () => {
                         <option>Software</option>
                         <option>Hardware</option>
                         <option>Stationary</option>
-                    </select><br />
+                    </select>
+                    </div>
+
+                    <div className='form-data-c'>
                     <label> Loan Id</label>
-                    <input value={lid}/><br />
+                    <input value={lid}/>
+                    </div>
+
+                    <div className='form-data-c'>
                     <label >Duration(in years)</label>
-                    <input value={time} onChange={(e)=>setTime(e.target.value)}/><br />
-                    <button>Add Data</button>
+                    <input value={time} onChange={(e)=>setTime(e.target.value)}/>
+                    </div>
+                    <button className='sect-btn'>Add Data</button>
                 </form>
 <br /><br />
                 <Table striped bordered hover>
             <thead>
                 <tr>
-                    <td>Loan id</td>
-                    <td>Loan Type</td>
-                    <td>Issue Date</td>
-                    <td>Return Date</td>
-                    <td>Duration</td>
+                    <th>Loan id</th>
+                    <th>Loan Type</th>
+                    <th>Issue Date</th>
+                    <th>Return Date</th>
+                    <th>Duration</th>
                 </tr>
             </thead>
             <tbody>
@@ -109,6 +122,7 @@ const LoanCard = () => {
             
             </div>
                 
+        </div>
         </div>
     )
 }
