@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,9 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.EmployeeDto;
 import com.example.demo.dto.ItemDto;
 import com.example.demo.entities.Item;
+import com.example.demo.entities.Loan;
 import com.example.demo.repositories.ItemRepository;
+import com.example.demo.repositories.LoanRepository;
 
 @Service
 public class ItemService implements ItemServiceInt {
@@ -40,6 +44,7 @@ public class ItemService implements ItemServiceInt {
 //		} else {
 //			return "Item Exists";
 //		}
+
 	}
 	
 }

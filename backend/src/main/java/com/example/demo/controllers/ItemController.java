@@ -18,6 +18,8 @@ import com.example.demo.dto.ItemDto;
 import com.example.demo.entities.Item;
 import com.example.demo.service.ItemService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/item")
 @CrossOrigin("http://localhost:3000")
@@ -38,6 +40,7 @@ public class ItemController {
 	
 	@PostMapping("/addItem")
 	ResponseEntity<String> addItem(@RequestBody ItemDto item){
+
 		return new ResponseEntity<>(itemService.addItem(item), HttpStatus.OK);
 	}
 	

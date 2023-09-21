@@ -1,28 +1,32 @@
 package com.example.demo.entities;
+import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
 
 @Entity
-@Data
-@Table(name = "item")
+@Table(name="item")
 public class Item {
 
 	@Override
 	public String toString() {
 		return "Item [item_id=" + item_id + ", item_name=" + item_name + ", description=" + description + ", item_make="
 				+ item_make + ", item_category=" + item_category + ", valuation=" + valuation + "]";
+
 	}
 
+	@ManyToOne
+	@JoinColumn(name = "employee_id", referencedColumnName="employee_id")
+	private Employee emp_id;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "item_id")
@@ -81,6 +85,7 @@ public class Item {
 	private String item_category;
 
 	@Column(name = "valuation")
+
 	private int valuation;
 	
 	@Column(name = "is_applied")
@@ -98,24 +103,24 @@ public class Item {
 	}
 
 	public void setItem_id(long item_id) {
+
 		this.item_id = item_id;
 	}
-
-	public String getDescription() {
-		return description;
+	public String getDesc() {
+		return desc;
 	}
 
 	public void setDescription(String desc) {
-		this.description = desc;
+		this.desc= desc;
 	}
 
-	public String getItem_name() {
-		return item_name;
-	}
+//	public String getItem_name() {
+//		return item_name;
+//	}
 
-	public void setItem_name(String item_name) {
-		this.item_name = item_name;
-	}
+//	public void setItem_name(String item_name) {
+//		this.item_name = item_name;
+//	}
 
 	public String getItem_make() {
 		return item_make;

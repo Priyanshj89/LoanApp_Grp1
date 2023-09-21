@@ -10,6 +10,7 @@ import AdminPage from './components/AdminLogin';
 import CustDataManagement from "./admin/dashboard/customerDataManagement/custDataManagement";
 import CustDataAdd from "./admin/dashboard/customerDataManagement/custDataAdd";
 import CustDataEdit from "./admin/dashboard/customerDataManagement/custDataEdit";
+import LoanCard from "./admin/dashboard/LoanCard"
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path= '/admin/dashboard/custDataManagement' element={<CustDataManagement />} />
       <Route path= '/admin/dashboard/custDataManagement/add' element ={<CustDataAdd />} />
       <Route path= '/admin/dashboard/custDataManagement/edit' element ={<CustDataEdit />} />
+      <Route path="/admin/dashboard/LoanCardManagement" element={<LoanCard/>} />
       <Route path="/employeelogin" element={<EmployeeLogin />} />
       <Route path="/adminlogin" element={<AdminPage />} />
     </Routes>
