@@ -20,4 +20,6 @@ public interface ItemRepository extends JpaRepository<Item,String>{
 	@Query(value = "SELECT * FROM item WHERE employee_id = :eid ", nativeQuery=true)
 	public List<Item> findAllItemsPurchased(@Param("eid") String employee_id);
 
+	@Query(value = "SELECT loan.loan_id, loan.issue_date, loan.return_date, loan.loan_type, loan.duration, item.is_approved from item join loan on item.loan_id = loan.loan_id", nativeQuery=true)
+	public List<?> findByEmployee_id(String id);
 }

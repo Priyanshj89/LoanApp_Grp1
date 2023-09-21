@@ -19,9 +19,9 @@
 -- Current Database: `lamadb`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `lamadb` /*!40100 DEFAULT CHARACTER SET utf8mb3 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `loandb` /*!40100 DEFAULT CHARACTER SET utf8mb3 */;
 
-USE `lamadb`;
+USE `loandb`;
 
 --
 -- Table structure for table `admin`
