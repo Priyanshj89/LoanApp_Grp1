@@ -91,4 +91,14 @@ public class ItemDto {
 	private boolean is_approved;
 
 	private String issue_status;
+	
+	private String loan_id;
+
+	public String getLoan_id() {
+		return loan_id;
+	}
+
+	public void setLoan_id(String loan_id) {
+		this.loan_id = loan_id;
+	}
 }

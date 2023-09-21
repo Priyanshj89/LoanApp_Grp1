@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
@@ -24,7 +25,12 @@ public class ItemService implements ItemServiceInt {
 	public List<Item> getItemsPurchased(EmployeeDto empDto){
 		return itemRepository.findAllItemsPurchased(empDto.getEmployee_id());
 	}
-
+	
+	public String addItemOnLoanApplied( ItemDto itemDto) {
+		Item newItem = new Item();
+		Item item = itemRepository.getById("" + itemDto.getItem_id());
+		return ("added loan to item");
+	}
 	public String addItem(ItemDto itemDto) {
 		Item item = new Item();
 		
