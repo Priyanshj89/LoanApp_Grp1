@@ -8,62 +8,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="item")
 public class Item {
-	// loan id, userid, IsApplied boolean, isApproved
-	@ManyToOne
-	@JoinColumn(name = "loan_id", referencedColumnName="loan_id")
-	private Loan loan_id;
-	
-	public Item(Loan loan_id, Employee emp_id, String item_id, boolean is_applied, boolean isApproved, String desc,
-			String status, String item_make, String category, int valuation) {
-		super();
-		this.loan_id = loan_id;
-		this.emp_id = emp_id;
-		this.item_id = item_id;
-		this.is_applied = is_applied;
-		this.isApproved = isApproved;
-		this.desc = desc;
-		this.status = status;
-		this.item_make = item_make;
-		this.category = category;
-		this.valuation = valuation;
-	}
-	public Loan getLoan_id() {
-		return loan_id;
-	}
-	public void setLoan_id(Loan loan_id) {
-		this.loan_id = loan_id;
-	}
-	public Employee getEmp_id() {
-		return emp_id;
-	}
-	public void setEmp_id(Employee emp_id) {
-		this.emp_id = emp_id;
-	}
-	public boolean isIs_applied() {
-		return is_applied;
-	}
-	public void setIs_applied(boolean is_applied) {
-		this.is_applied = is_applied;
-	}
-	public boolean isApproved() {
-		return isApproved;
-	}
-	public void setApproved(boolean isApproved) {
-		this.isApproved = isApproved;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	public void setDesc(String desc) {
-		this.desc = desc;
+
+	@Override
+	public String toString() {
+		return "Item [item_id=" + item_id + ", item_name=" + item_name + ", description=" + description + ", item_make="
+				+ item_make + ", item_category=" + item_category + ", valuation=" + valuation + "]";
+
 	}
 
 	@ManyToOne
@@ -71,35 +28,82 @@ public class Item {
 	private Employee emp_id;
 	
 	@Id
-	@Column(name="item_id")
-	private String item_id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "item_id")
+	private long item_id;
 	
-	@Column(name="is_applied")
+	@ManyToOne
+	@JoinColumn(name ="loan_id")
+	Loan loan;
+	
+	@OneToOne
+	@JoinColumn(name = "employee_id")
+	Employee employee;
+
+	public Loan getLoan() {
+		return loan;
+	}
+
+	public void setLoan(Loan loan) {
+		this.loan = loan;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public boolean isIs_applied() {
+		return is_applied;
+	}
+
+	public void setIs_applied(boolean is_applied) {
+		this.is_applied = is_applied;
+	}
+
+	public boolean isIs_approved() {
+		return is_approved;
+	}
+
+	public void setIs_approved(boolean is_approved) {
+		this.is_approved = is_approved;
+	}
+
+	@Column(name = "item_name")
+	private String item_name;
+
+	@Column(name = "description")
+	private String description;
+
+	@Column(name = "item_make")
+	private String item_make;
+
+	@Column(name = "item_category")
+	private String item_category;
+
+	@Column(name = "valuation")
+
+	private int valuation;
+	
+	@Column(name = "is_applied")
 	private boolean is_applied;
 	
-	@Column(name="is_approved")
-	private boolean isApproved;
+	@Column(name = "is_approved")
+	private boolean is_approved;
 	
-	@Column(name="description")
-	private String desc;
+	@Column(name = "issue_status")
+	private String issue_status;
 	
-	@Column(name="status")
-	private String status;
-	
-	@Column(name="item_make")
-	private String item_make;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING)
-	@Column(name="item_category")
-	private String category;
-	
-	@Column(name="valuation")
-	private int valuation;
 
-	public String getItem_id() {
+	public long getItem_id() {
 		return item_id;
 	}
-	public void setItem_id(String item_id) {
+
+	public void setItem_id(long item_id) {
+
 		this.item_id = item_id;
 	}
 	public String getDesc() {
@@ -126,20 +130,44 @@ public class Item {
 		this.item_make = item_make;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	public int getValuation() {
 		return valuation;
 	}
 
 	public void setValuation(int valuation) {
 		this.valuation = valuation;
+	}
+
+	public Item(long item_id, Loan loan, Employee employee, String item_name, String description, String item_make,
+			String item_category, int valuation, boolean is_applied, boolean is_approved, String issue_status) {
+		super();
+		this.item_id = item_id;
+		this.loan = loan;
+		this.employee = employee;
+		this.item_name = item_name;
+		this.description = description;
+		this.item_make = item_make;
+		this.item_category = item_category;
+		this.valuation = valuation;
+		this.is_applied = is_applied;
+		this.is_approved = is_approved;
+		this.issue_status = issue_status;
+	}
+
+	public String getItem_category() {
+		return item_category;
+	}
+
+	public void setItem_category(String item_category) {
+		this.item_category = item_category;
+	}
+
+	public String getIssue_status() {
+		return issue_status;
+	}
+
+	public void setIssue_status(String issue_status) {
+		this.issue_status = issue_status;
 	}
 
 	public Item() {
