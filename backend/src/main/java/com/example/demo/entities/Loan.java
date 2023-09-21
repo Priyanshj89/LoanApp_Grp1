@@ -29,8 +29,7 @@ public class Loan {
 		
 
 	
-	@OneToMany(mappedBy="loan_id") 
-
+	@OneToMany(mappedBy="loan") 
 	private Set<Item> item;
 	
 
@@ -104,6 +103,14 @@ public class Loan {
 		this.issue_date=issue_date;
 		this.return_date=return_date;
 	}
+	
+	public Loan(String loan_id, String loan_type, int duration) {
+		super();
+		this.loan_id = loan_id;
+		this.loan_type = loan_type;
+		this.duration = duration;
+	}
+	
 	public Loan() {
 		super();
 	}
