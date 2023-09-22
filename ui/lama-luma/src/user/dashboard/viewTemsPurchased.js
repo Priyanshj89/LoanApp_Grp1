@@ -7,8 +7,8 @@ const ViewItemsPurchased = () => {
 
     const [items, setItems] = useState([])
     useEffect(()=>{
-        axios.get('http://localhost:8082/employee/getItemsPurchased',{
-           //employee_id:localStorage.get("empid");
+        axios.post('http://localhost:8082/item/getItemsPurchased',{
+           employee_id:localStorage.getItem("empid")
         }, {
             headers: {
                 "Content-Type": "application/json",
@@ -21,15 +21,16 @@ const ViewItemsPurchased = () => {
     },[]);
     return <div>
         <Navbar/>
+        <h1 style={{marginLeft:'400px'}}>Items You have purchased</h1>
+        <br />
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <td>Employee id</td>
-                        <td>Name</td>
-                        <td>Department</td>
-                        <td>Designation</td>
-                        <td>Gender</td>
-                        <td>Date of birth</td>
+                        <td>Item id</td>
+                        <td>Item Category</td>
+                        <td>Item Make</td>
+                        <td>Valuation</td>
+                        <td>Loan Id</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,11 +39,11 @@ const ViewItemsPurchased = () => {
                     items.map(item=>{
                         return(
                         <tr>
-                            <td>{item.employee_id}</td>
-                            <td>{item.name}</td>
-                            <td>{item.dept}</td>
-                            <td>{item.designation}</td>
-                            <td>{item.gender}</td>        
+                            <td>{item.item_id}</td>
+                            <td>{item.item_category}</td>
+                            <td>{item.item_make}</td>
+                            <td>{item.valuation}</td>
+                            <td>{item.loan}</td>        
                         </tr>
                     )})
                     }
