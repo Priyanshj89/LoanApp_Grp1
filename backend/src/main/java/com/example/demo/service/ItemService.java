@@ -40,9 +40,11 @@ public class ItemService implements ItemServiceInt {
 		item.setValuation(itemDto.getValuation());
 		item.setIs_applied(itemDto.isIs_applied());
 		item.setIs_approved(itemDto.isIs_approved());
+		if(itemDto.getEmployee_id()!=null) {
 		Employee emp=new Employee();
 		emp.setEmployee_id(itemDto.getEmployee_id());
 		item.setEmployee(emp);
+		}
 //		Boolean ifExists = itemRepository.existsById(itemDto.getItem_id());
 //		if (!ifExists) {
 		itemRepository.save(item);
