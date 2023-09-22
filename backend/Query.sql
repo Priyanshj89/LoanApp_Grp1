@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.6.5-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: lamadb
+-- Host: localhost    Database: loandb
 -- ------------------------------------------------------
 -- Server version	10.6.5-MariaDB
 
@@ -14,14 +14,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Current Database: `lamadb`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `lamadb` /*!40100 DEFAULT CHARACTER SET utf8mb3 */;
-
-USE `lamadb`;
 
 --
 -- Table structure for table `admin`
@@ -86,7 +78,7 @@ DROP TABLE IF EXISTS `item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `item` (
-  `item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` varchar(6) NOT NULL,
   `description` varchar(25) NOT NULL,
   `issue_status` char(1) DEFAULT NULL,
   `item_make` varchar(25) DEFAULT NULL,
@@ -94,15 +86,15 @@ CREATE TABLE `item` (
   `valuation` int(11) DEFAULT NULL,
   `is_approved` tinyint(1) DEFAULT NULL,
   `is_applied` tinyint(1) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
   `employee_id` varchar(25) DEFAULT NULL,
   `loan_id` varchar(20) DEFAULT NULL,
-  `item_name` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`item_id`),
   KEY `employee_id` (`employee_id`),
   KEY `loan_id` (`loan_id`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`employee_id`),
   CONSTRAINT `item_ibfk_2` FOREIGN KEY (`loan_id`) REFERENCES `loan` (`loan_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +103,7 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES (87,'a testing item','N','wodden','furniture',100,0,0,'1','L101',NULL),(88,'desc',NULL,'abc','abc',21,0,0,100,NULL,'shaurya'),(89,'desc',NULL,'abc','abc',21,0,0,NULL,NULL,'shaurya1234'),(90,'sec',NULL,'wood','ebc',2100,0,0,NULL,NULL,'new Item');
+INSERT INTO `item` VALUES ('87','a testing item','N','wodden','furniture',100,0,0,'pending','1','L101');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +118,7 @@ CREATE TABLE `loan` (
   `loan_id` varchar(6) NOT NULL,
   `loan_type` varchar(15) NOT NULL,
   `duration` int(11) NOT NULL,
-  `item_id` int(11) DEFAULT NULL,
+  `item_id` varchar(25) DEFAULT NULL,
   `issue_date` date DEFAULT NULL,
   `return_date` date DEFAULT NULL,
   PRIMARY KEY (`loan_id`),
@@ -141,6 +133,7 @@ CREATE TABLE `loan` (
 
 LOCK TABLES `loan` WRITE;
 /*!40000 ALTER TABLE `loan` DISABLE KEYS */;
+INSERT INTO `loan` VALUES ('L101','furniture',11,NULL,NULL,NULL),('L102','furniture',11,NULL,'2022-01-12','2023-01-23');
 /*!40000 ALTER TABLE `loan` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -153,4 +146,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-21  4:49:39
+-- Dump completed on 2023-09-15 22:17:18

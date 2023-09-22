@@ -41,4 +41,9 @@ public class ItemController {
 		return new ResponseEntity<>(itemService.addItem(item), HttpStatus.OK);
 	}
 	
+	@PostMapping("/addItemOnLoanApproved")
+	ResponseEntity<String> addItemOnLoanApproved(@RequestBody ItemDto itemDto){
+		return new ResponseEntity<>(itemService.addItemOnLoanApproved(itemDto),HttpStatus.OK);
+	}
+	
 }
