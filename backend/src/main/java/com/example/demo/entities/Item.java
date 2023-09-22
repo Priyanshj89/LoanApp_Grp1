@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -36,9 +38,9 @@ public class Item {
 	@JoinColumn(name ="loan_id")
 	Loan loan;
 	
-	@OneToOne
-	@JoinColumn(name = "employee_id")
-	Employee employee;
+//	@OneToOne
+//	@JoinColumn(name = "employee_id")
+//	Employee employee;
 
 	public Loan getLoan() {
 		return loan;
@@ -49,11 +51,11 @@ public class Item {
 	}
 
 	public Employee getEmployee() {
-		return employee;
+		return emp_id;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setEmployee(Employee emp_id) {
+		this.emp_id = emp_id;
 	}
 
 	public boolean isIs_applied() {
@@ -107,11 +109,11 @@ public class Item {
 		this.item_id = item_id;
 	}
 	public String getDesc() {
-		return desc;
+		return description;
 	}
 
 	public void setDescription(String desc) {
-		this.desc= desc;
+		this.description= desc;
 	}
 
 //	public String getItem_name() {
@@ -143,7 +145,7 @@ public class Item {
 		super();
 		this.item_id = item_id;
 		this.loan = loan;
-		this.employee = employee;
+		this.emp_id = emp_id;
 		this.item_name = item_name;
 		this.description = description;
 		this.item_make = item_make;
@@ -172,6 +174,11 @@ public class Item {
 
 	public Item() {
 		super();
+	}
+
+	public void setItem_name(String item_name) {
+		// TODO Auto-generated method stub
+		this.item_name = item_name;
 	}
 
 }

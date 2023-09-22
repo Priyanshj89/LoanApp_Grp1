@@ -29,8 +29,7 @@ public class Loan {
 		
 
 	
-	@OneToMany(mappedBy="loan_id") 
-
+	@OneToMany(mappedBy="loan") 
 	private Set<Item> item;
 	
 
