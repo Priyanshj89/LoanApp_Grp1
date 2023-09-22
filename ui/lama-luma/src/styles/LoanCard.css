@@ -1,0 +1,33 @@
+.border-st{
+    border-right: 2px solid black;
+    width: 50%;
+    min-height: 85% !important;
+    padding-right: 2rem;
+    position: absolute;
+}
+
+.form-data-c{
+    padding: 0.5rem;
+    display: inline;
+}
+
+.form-data-c>label {
+    padding: 1rem;
+    display: inline;
+}
+
+.form-data-c>input{
+    margin: 0.1rem;
+}
+
+.sect-btn{
+    max-width: 15%;
+    margin:10px;
+    background-color: rgb(251, 204, 75);
+    border-color: rgb(254, 171, 82);
+    color: black;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 0.5rem;
+    border-radius: 10px;
+}

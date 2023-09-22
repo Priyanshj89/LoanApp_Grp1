@@ -99,7 +99,10 @@ export default function EmployeeLogin() {
         )
         .then(res => {
             if(res.data=="success")
-            navigate("/user/dashboard")
+            {
+              localStorage.setItem("empid",email)
+              navigate("/user/dashboard")
+            }
             else
             alert("Error");
         })

@@ -23,6 +23,7 @@ function App() {
       <Route path="/user/dashboard/viewItemsPurchased" element={<ViewItemsPurchased />} />
       <Route path="/admin/dashboard/" element={<AdminDashboard />} />
       <Route path= '/admin/dashboard/custDataManagement' element={<CustDataManagement />} />
+      <Route path= '/admin/dashboard/itemMaster' element={<ItemMaster />} />
       <Route path= '/admin/dashboard/custDataManagement/add' element ={<CustDataAdd />} />
       <Route path= '/admin/dashboard/custDataManagement/edit' element ={<CustDataEdit />} />
       <Route path="/admin/dashboard/LoanCardManagement" element={<LoanCard/>} />

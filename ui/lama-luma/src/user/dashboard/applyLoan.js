@@ -1,65 +1,91 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar"
-import "../../styles/ApplyLoan.css"
+import "../../styles/ApplyLoan.css";
+import axios from "axios";
+import {Table} from 'react-bootstrap'
 
 const ApplyLoan = () => {
 
-    function handleSubmit(e){
-        e.preventDefault();
-        console.log(empid);
-        console.log(value);
-        console.log(desc);
-        console.log(make);
-        console.log(category);
+    const [items,setItems] = useState([]);
+
+    useEffect(()=>{
+        axios
+        .get(
+          "http://localhost:8082/item/allItems",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin":"*"
+            },
+          }
+        )
+        .then(res => {
+            console.log(res)
+            setItems(res.data)
+            //alert("Item added Successfully to itinerary");
+        })
+        .catch(err => {
+          console.log(err);
+          //alert("Item addition failed");
+        });
+    },[])
+
+    const handleLoan = (item) =>{
+      console.log(item)
+      console.log(localStorage.getItem("empid"))
+      axios
+        .post(
+          "http://localhost:8082/user/addItem",
+          {
+            employee_id:localStorage.getItem("empid"),
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin":"*"
+            },
+          }
+        )
+        .then(res => {
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
     
-
-    const [empid,setempid]=useState("");
-    const [value,setValue]=useState("");
-    const [desc,setDesc]=useState("");
-    const [make,setMake]=useState("");
-    const [category,setCategory]=useState("");
     return <div>
         <Navbar/>
-        <div className="applyloan-wrapper">
-        <h2>Apply For a Loan</h2>
-        <br/>
-        <div className="applyLoan">
-            <form onSubmit={handleSubmit}> 
-            <div className="loan-group"> 
-                <label for="emp_id">Employee Id:</label>
-                <input id="emp_id"  onChange={(e)=>{setempid(e.target.value)}}/>
-            </div>
-            <div className="loan-group"> 
-                <label for="desc">Item Description:</label>
-                <input id="desc"  onChange={(e)=>{setDesc(e.target.value)}}/>
-            </div>
-            <div className="loan-group"> 
-                <label for="itemValue">Item Value:</label>
-                <input id="itemValue"  onChange={(e)=>{setValue(e.target.value)}}/>
-            </div>
-            <div className="loan-group"> 
-                <label for="itemMake">Item Make:</label>
-                <select id="itemMake" onChange={(e)=>setMake(e.target.value)}>
-                    <option value="Wooden">Wooden</option>
-                    <option value="Steel">Steel</option>
-                    <option value="Hardware">Hardware</option>
-                    <option value="Software">Software</option>
-                </select>
-            </div>
-            <div className="loan-group"> 
-                <label for="itemCategory">Item Category:</label>
-                <select id="itemCategory" onChange={(e)=>setCategory(e.target.value)}>
-                    <option value="Furniture">Furniture</option>
-                    <option value="Stationary">Stationary</option>
-                    <option value="Appliances">Appliances</option>
-                    <option value="Stationary">Stationary</option>
-                </select>
-            </div>
-                <button className="loan-btn">Apply</button>
-            </form>
-        </div>
-        </div>
+        <Table striped bordered hover>
+            <thead>
+                <tr>
+                    <th>Item Id</th>
+                    <th>Category</th>
+                    <th>Valuation</th>
+                    <th>Item Make</th>
+                    <th>Description</th>
+                    <th>Apply for Loan</th> 
+                </tr>
+            </thead>
+            <tbody>
+                 
+        {
+        items.map(item=>{
+            return(
+            <tr>
+                <td>{item.item_id}</td>
+                <td>{item.category}</td>
+                <td>{item.valuation}</td>
+                <td>{item.item_make}</td>
+                 <td>{item.description}</td>
+                 <td><button onClick={()=>handleLoan(item)}>Apply</button></td> 
+            </tr>
+
+         ) })
+        }
+            </tbody>
+        </Table>
+       
         </div>
 }
 export {ApplyLoan};
