@@ -10,6 +10,17 @@ const LoanCard = () => {
     const [lid,setLid]=useState("");
     const [time,setTime]=useState("");
     const [loans,setLoans]=useState();
+    const [items,setItems]=useState();
+
+    async function getAllItems(){
+        await axios.get("http://localhost:8082/item/getToBeapproved").then(res=>{
+            console.log(res.data);
+            setItems(res?.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
 
     async function getAllLoans(){
         await axios.get("http://localhost:8082/loan/allLoans").then(res=>{
@@ -58,11 +69,12 @@ const LoanCard = () => {
        var temp=Math.floor(Math.random() * 1000);
        setLid("L"+temp);
        getAllLoans();
+       getAllItems();
     },[])
     return (
         <div>
             <Navbar/>
-        <div className='LoanCard' style={{width:'100%',display:'flex',padding:"2rem"}}>
+        <div className='LoanCard' style={{width:'100%',padding:"2rem"}}>
             <div className='border-st'>
             <form style={{justifyContent:'center',border:'2px',display:"flex",flexDirection:"column"}} onSubmit={handleLoan}>
                     <div className='form-data-c'>
@@ -118,10 +130,8 @@ const LoanCard = () => {
             </tbody>
         </Table>
             </div>
-            <div > 
-            
+            <div >
             </div>
-                
         </div>
         </div>
     )

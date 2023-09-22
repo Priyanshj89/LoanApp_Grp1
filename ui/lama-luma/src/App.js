@@ -12,7 +12,7 @@ import CustDataAdd from "./admin/dashboard/customerDataManagement/custDataAdd";
 import CustDataEdit from "./admin/dashboard/customerDataManagement/custDataEdit";
 import LoanCard from "./admin/dashboard/LoanCard"
 import ItemMaster from "./admin/dashboard/ItemMaster"
-
+import ToBeApproved from './admin/dashboard/ToBeApproved'
 function App() {
   return (
     <Routes>

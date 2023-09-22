@@ -12,10 +12,14 @@ import com.example.demo.entities.Item;
 import com.example.demo.entities.Loan;
 
 @Repository
-public interface ItemRepository extends JpaRepository<Item,Long>{
+public interface ItemRepository extends JpaRepository<Item,String>{
 	
 	@Query(value = "SELECT * FROM item WHERE employee_id IS NULL", nativeQuery= true)
 	List<Item> findAllEmployeeNull();
+	
+	
+	@Query(value = "SELECT * FROM item WHERE employee_id IS NOT NULL AND is_applied=true AND is_approved=false", nativeQuery= true)
+	List<Item> findToBeApproved();
 	
 	@Query(value = "SELECT * FROM item WHERE employee_id = :eid ", nativeQuery=true)
 	public List<Item> findAllItemsPurchased(@Param("eid") String employee_id);

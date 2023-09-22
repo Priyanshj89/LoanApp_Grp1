@@ -36,7 +36,7 @@ public class ItemController {
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public String deleteItem(@PathVariable Long id) {
+	public String deleteItem(@PathVariable String id) {
 		return itemService.deleteItem(id);
 	}
 	
@@ -51,6 +51,16 @@ public class ItemController {
 		return new ResponseEntity<>(itemService.addItem(item), HttpStatus.OK);
 	}
 	
+	@PostMapping("/applyLoan")
+	ResponseEntity<String> applyLoan(@RequestBody ItemDto item){
+
+		return new ResponseEntity<>(itemService.addItemOnLoanApplied(item), HttpStatus.OK);
+	}
+	
+	@GetMapping("/getToBeapproved")
+	public List<Item> listItemstobeApproved(){
+		return itemService.getItemsApp();
+	}
 	@PostMapping("/addItemOnLoanApproved")
 	ResponseEntity<String> addItemOnLoanApproved(@RequestBody ItemDto itemDto){
 		return new ResponseEntity<>(itemService.addItemOnLoanApproved(itemDto),HttpStatus.OK);

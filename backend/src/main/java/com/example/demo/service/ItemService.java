@@ -50,9 +50,12 @@ public class ItemService implements ItemServiceInt {
 			newItem = itemRepository.save(newItem);
 			return ""+newItem.getItem_id();
 		}
-		else return "error";
+		else return ""+ifExistsItem+ifExistsEmployee;
 	}
 	
+	public List<Item> getItemsApp(){
+		return itemRepository.findToBeApproved();
+	}
 	public String addItemOnLoanApproved(ItemDto itemDto) {
 		boolean ifExistsItem = itemRepository.existsById(""+itemDto.getItem_id());
 		boolean ifExistsLoan = loanRepository.existsById(itemDto.getLoan_id());
@@ -94,7 +97,7 @@ public class ItemService implements ItemServiceInt {
 	}
 	
 
-	public String deleteItem(Long id) {
+	public String deleteItem(String id) {
 		boolean ifExists=itemRepository.existsById(id);
 		if(ifExists) {
 			itemRepository.deleteById(id);
