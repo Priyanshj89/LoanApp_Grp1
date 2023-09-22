@@ -1,15 +1,28 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Navbar from "../../components/Navbar"
 import '../../styles/ApplyLoan.css'
 import axios from 'axios'
 import {Table} from 'react-bootstrap'
 
+import {Button} from 'react-bootstrap'
 
 export default function ItemMaster(){
         const [items,setItems]=useState();
 
+        async function deleteItem(id){
+            let url="http://localhost:8082/item/delete/" +id;
+            await axios.delete(url).then((res)=>{
+                if(res.status=="200" && res.data=="Deleted from db"){
+                    console.log("deleted");
+                    getAllItems();
+                }
+            }).catch(err=>{
+                console.log(err);
+
+            })
+        }
         async function getAllItems(e){
-                    e.preventDefault();
+            //  e.preventDefault();
             await axios.get("http://localhost:8082/item/allItems",{
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin":"*"
@@ -21,9 +34,12 @@ export default function ItemMaster(){
             })
         }
 
+useEffect(()=>{
+    getAllItems()
+},[])
+
     async function handleSubmit(e){
         e.preventDefault();
-        console.log(empid);
         console.log(value);
         console.log(desc);
         console.log(make);
@@ -92,14 +108,14 @@ export default function ItemMaster(){
 
         </div>
         </div>
+        <h1>Available Items</h1>
         <Table striped bordered hover>
             <thead>
                 <tr>
-                    <td>Loan id</td>
-                    <td>Loan Type</td>
-                    <td>Issue Date</td>
-                    <td>Return Date</td>
-                    <td>Duration</td>
+                    <td>Item Id</td>
+                    <td>Item Category</td>
+                    <td>Item Make</td>
+                    <td>Valuation</td>
                 </tr>
             </thead>
             <tbody>
@@ -109,12 +125,11 @@ export default function ItemMaster(){
              
             return(
             <tr>
-                <td>{item.loan_id}</td>
-                <td>{item.loan_type}</td>
-                <td>{item.issue_date}</td>
-                <td>{item.return_date}</td>
-                 <td>{item.duration}</td>
-               
+                <td>{item.item_id}</td>
+                <td>{item.item_category}</td>
+                <td>{item.item_make}</td>
+                <td>{item.valuation}</td>
+                <Button variant="danger" onClick={()=>{deleteItem(item.item_id)}}>Delete Item</Button>
             </tr>
 
          ) })
