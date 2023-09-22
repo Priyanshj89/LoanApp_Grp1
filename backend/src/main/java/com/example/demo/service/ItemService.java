@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.EmployeeDto;
 import com.example.demo.dto.ItemDto;
+import com.example.demo.entities.Employee;
 import com.example.demo.entities.Item;
 import com.example.demo.entities.Loan;
 import com.example.demo.repositories.ItemRepository;
@@ -37,6 +38,11 @@ public class ItemService implements ItemServiceInt {
 		item.setItem_make(itemDto.getItem_make());
 		item.setItem_name(itemDto.getItem_name());
 		item.setValuation(itemDto.getValuation());
+		item.setIs_applied(itemDto.isIs_applied());
+		item.setIs_approved(itemDto.isIs_approved());
+		Employee emp=new Employee();
+		emp.setEmployee_id(itemDto.getEmployee_id());
+		item.setEmployee(emp);
 //		Boolean ifExists = itemRepository.existsById(itemDto.getItem_id());
 //		if (!ifExists) {
 		itemRepository.save(item);
