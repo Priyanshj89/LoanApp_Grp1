@@ -10,7 +10,6 @@ import AdminPage from './components/AdminLogin';
 import CustDataManagement from "./admin/dashboard/customerDataManagement/custDataManagement";
 import CustDataAdd from "./admin/dashboard/customerDataManagement/custDataAdd";
 import CustDataEdit from "./admin/dashboard/customerDataManagement/custDataEdit";
-import ItemMaster from "./admin/dashboard/itemMaster"
 import LoanCard from "./admin/dashboard/LoanCard"
 import ItemMaster from "./admin/dashboard/ItemMaster"
 
