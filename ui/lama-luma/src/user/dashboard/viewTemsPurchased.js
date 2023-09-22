@@ -7,7 +7,9 @@ const ViewItemsPurchased = () => {
 
     const [items, setItems] = useState([])
     useEffect(()=>{
-        axios.get('http://localhost:8082/employee/allItems', {
+        axios.get('http://localhost:8082/employee/getItemsPurchased',{
+           //employee_id:localStorage.get("empid");
+        }, {
             headers: {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*"
