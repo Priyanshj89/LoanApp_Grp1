@@ -12,7 +12,7 @@ import com.example.demo.entities.Item;
 import com.example.demo.entities.Loan;
 
 @Repository
-public interface ItemRepository extends JpaRepository<Item,String>{
+public interface ItemRepository extends JpaRepository<Item,Long>{
 	
 	@Query(value = "SELECT * FROM item WHERE employee_id IS NULL", nativeQuery= true)
 	List<Item> findAllEmployeeNull();

@@ -47,4 +47,15 @@ public class ItemService implements ItemServiceInt {
 
 	}
 	
+
+	public String deleteItem(Long id) {
+		boolean ifExists=itemRepository.existsById(id);
+		if(ifExists) {
+			itemRepository.deleteById(id);
+			return "Deleted from db";
+		}
+		
+		return "error";
+	}
+	
 }
