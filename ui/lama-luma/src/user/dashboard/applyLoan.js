@@ -35,9 +35,15 @@ const ApplyLoan = () => {
       console.log(localStorage.getItem("empid"))
       axios
         .post(
-          "http://localhost:8082/user/addItem",
+          "http://localhost:8082/item/addItem",
           {
             employee_id:localStorage.getItem("empid"),
+            item_make:item.item_make,
+            item_category:item.item_category,
+            is_applied:1,
+            is_approved:0,
+            valuation:item.valuation,
+            description:item.description?item.description:"Unavailable"
           },
           {
             headers: {
@@ -48,6 +54,7 @@ const ApplyLoan = () => {
         )
         .then(res => {
           console.log(res.data);
+          alert("Applied Successfully")
         })
         .catch(err => {
           console.log(err);
