@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entities.Admin;
 import com.example.demo.entities.Employee;
+import com.example.demo.exceptions.RecordAlreadyExistsException;
 import com.example.demo.repositories.AdminRepository;
 import com.example.demo.repositories.EmployeeRepository;
 import com.example.demo.service.AdminService;
@@ -30,7 +31,7 @@ public class AdminController {
     private AdminService adminServ;	
 	
 	@PostMapping("/adduser")
-	public Admin addAddmin(@RequestBody Admin admin) {
+	public Admin addAddmin(@RequestBody Admin admin)  throws RecordAlreadyExistsException {
 		return adminServ.addAdmin(admin);
 	}
 	
@@ -46,7 +47,7 @@ public class AdminController {
 	}
 	
 	@PostMapping("/addCustomer")
-	public Employee addCustomer(@RequestBody Employee employee) {
+	public Employee addCustomer(@RequestBody Employee employee)  throws RecordAlreadyExistsException {
 		return adminServ.addCustomer(employee);
 	}
 }
