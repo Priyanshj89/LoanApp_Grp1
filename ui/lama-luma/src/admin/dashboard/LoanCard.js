@@ -100,7 +100,7 @@ const LoanCard = () => {
                     <button className='sect-btn'>Add Data</button>
                 </form>
 <br /><br />
-                <Table striped bordered hover>
+                <Table striped bordered hover variant='dark'>
             <thead>
                 <tr>
                     <th>Loan id</th>

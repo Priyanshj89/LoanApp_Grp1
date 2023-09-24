@@ -152,9 +152,9 @@ export default function EmployeeLogin() {
                   <div onClick={()=>{navigate('/adminlogin')}} style={{padding:"0.5rem",cursor:"pointer",fontWeight:"500"}}>For Admin Login Click Here</div>
                 </form>
                 <>
-                    <Button  onClick={() => setShow(true)}>
+                    <button  onClick={() => setShow(true)} className="sec-btn">
                     Forgot Password?
-                  </Button>
+                  </button>
 
                   <Modal
                     show={show}
@@ -167,7 +167,7 @@ export default function EmployeeLogin() {
                         Reset Password
                       </Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>
+                    <Modal.Body style={{display:"inline-block", width:"10rem"}}>
                     <form onSubmit={handleForgot}>
                     <label>Employee Id</label>
                     <input onChange={(e)=>{setFid(e.target.value)}} /><br />
@@ -177,7 +177,7 @@ export default function EmployeeLogin() {
                      <label>New Password</label>
                     <input onChange={(e)=>setNew(e.target.value)}/>
                     <br />
-                    <button>Reset</button>
+                    <button className="prim-btn">Reset</button>
                     </form>
                     </Modal.Body>
       </Modal>

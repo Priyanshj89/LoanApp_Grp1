@@ -176,9 +176,8 @@ export default function AdminLogin() {
                     <input onChange={(e)=>setName(e.target.value)}/>
                     <label>New Password</label>
                     <input onChange={(e)=>setNew(e.target.value)}/>
-                    <br/>
-                    <br/>
-                    <button>Reset</button>
+                    
+                    <button className="prim-btn">Reset</button>
                     </form>
                     </Modal.Body>
       </Modal>
