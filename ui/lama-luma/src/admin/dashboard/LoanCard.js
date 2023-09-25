@@ -3,13 +3,14 @@ import axios from "axios";
 import {Table} from 'react-bootstrap'
 import Navbar from '../../components/Navbar';
 import "../../styles/LoanCard.css"
-import "../../styles/AdminLogin.css"
+import "../../styles/AdminLogin.css";
+import ToBeApproved from "../dashboard/ToBeApproved"
 
 const LoanCard = () => {
     const [type,setType]=useState("Furniture");
     const [lid,setLid]=useState("");
     const [time,setTime]=useState("");
-    const [loans,setLoans]=useState();
+    const [loans,setLoans]=useState([]);
     const [items,setItems]=useState();
 
     async function getAllItems(){
@@ -74,6 +75,7 @@ const LoanCard = () => {
     return (
         <div>
             <Navbar/>
+            <div style={{display:"flex"}}>
         <div className='LoanCard' style={{width:'100%',padding:"2rem"}}>
             <div className='border-st'>
             <form style={{justifyContent:'center',border:'2px',display:"flex",flexDirection:"column"}} onSubmit={handleLoan}>
@@ -100,7 +102,7 @@ const LoanCard = () => {
                     <button className='sect-btn'>Add Data</button>
                 </form>
 <br /><br />
-                <Table striped bordered hover>
+                <Table striped bordered hover variant='dark'>
             <thead>
                 <tr>
                     <th>Loan id</th>
@@ -130,8 +132,8 @@ const LoanCard = () => {
             </tbody>
         </Table>
             </div>
-            <div >
             </div>
+            <ToBeApproved/>
         </div>
         </div>
     )
