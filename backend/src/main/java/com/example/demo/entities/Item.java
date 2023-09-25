@@ -2,6 +2,7 @@ package com.example.demo.entities;
 import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,6 +27,7 @@ public class Item {
 	}
 
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "employee_id", referencedColumnName="employee_id")
 	private Employee emp_id;
 	
@@ -35,6 +37,7 @@ public class Item {
 	private long item_id;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name ="loan_id")
 	Loan loan;
 	
