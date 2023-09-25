@@ -25,6 +25,7 @@ public class AdminService implements AdminServiceInt{
 		else
 		{
 			Admin tempAdmin=adminRepo.findById(admin.getAdmin_id()).get();
+			tempAdmin.setPassword("*****");
 			return tempAdmin;
 		}
   }
@@ -55,6 +56,7 @@ public class AdminService implements AdminServiceInt{
 		if(ifExists)
 		{
 			Employee tempEmp=empRepo.findById(employee.getEmployee_id()).get();
+			tempEmp.setPassword("*****");
 			return tempEmp;
 		}
 		else {
