@@ -22,6 +22,18 @@ const LoanCard = () => {
         })
     }
 
+    async function deleteItem(id){
+        let url="http://localhost:8082/item/delete/" +id;
+        await axios.delete(url).then((res)=>{
+            if(res.status=="200" && res.data=="Deleted from db"){
+                console.log("deleted");
+                getAllItems();
+            }
+        }).catch(err=>{
+            console.log(err);
+
+        })
+    }
     async function handleItem(item){
         await axios.post("http://localhost:8082/item/addItemOnLoanApproved",{
             item_id:item.item_id,
@@ -66,8 +78,8 @@ const LoanCard = () => {
                 <td>{item.item_make}</td>
                 <td>{item.item_category}</td>
                 <td>{item.employee.employee_id}</td>
-                <Button onClick={()=>setShow(true)}>Approve Loan</Button>
-                <Button>Deny</Button>
+                <Button onClick={()=>setShow(true)}>Approve</Button>
+                <Button onClick={()=>{deleteItem(item.item_id)}}>Deny</Button>
                 <Modal
                     show={show}
                     onHide={() => setShow(false)}

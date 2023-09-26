@@ -35,6 +35,10 @@ const ViewLoan = () => {
          
                     {
                     loans.map(item=>{
+                        var str="pending";
+                        if(item[5]==true)
+                         str="approved"
+                        
                         return(
                         <tr>
                             <td>{item[0]}</td>
@@ -42,7 +46,11 @@ const ViewLoan = () => {
                             <td>{item[2]}</td>
                             <td>{item[3]}</td>
                             <td>{item[4]}</td>        
-                            <td>{item[5]}</td>        
+                           item[5]?(
+                            <td style={{color:'green'}}>Approved</td>
+                           ):(
+                            <td style={{color:'yellow'}}>Pending</td>
+                           )      
 
                         </tr>
                     )})
