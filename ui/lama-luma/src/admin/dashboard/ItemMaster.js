@@ -103,7 +103,7 @@ useEffect(()=>{
                     <option value="Stationary">Stationary</option>
                 </select>
             </div>
-                <button className="loan-btn">Apply</button>
+                <button className="loan-btn">Add</button>
             </form>
 
         </div>

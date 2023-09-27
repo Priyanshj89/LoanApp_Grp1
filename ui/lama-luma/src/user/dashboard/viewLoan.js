@@ -35,9 +35,7 @@ const ViewLoan = () => {
          
                     {
                     loans.map(item=>{
-                        var str="pending";
-                        if(item[5]==true)
-                         str="approved"
+                
                         
                         return(
                         <tr>

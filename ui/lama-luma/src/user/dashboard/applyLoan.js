@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar"
 import "../../styles/ApplyLoan.css";
 import axios from "axios";
 import {Table} from 'react-bootstrap'
-
+import {Button} from 'react-bootstrap'
 const ApplyLoan = () => {
 
     const [items,setItems] = useState([]);
