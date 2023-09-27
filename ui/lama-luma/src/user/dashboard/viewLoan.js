@@ -46,11 +46,11 @@ const ViewLoan = () => {
                             <td>{item[2]}</td>
                             <td>{item[3]}</td>
                             <td>{item[4]}</td>        
-                           item[5]?(
+                           {item[5]?(
                             <td style={{color:'green'}}>Approved</td>
                            ):(
                             <td style={{color:'yellow'}}>Pending</td>
-                           )      
+                           )    }  
 
                         </tr>
                     )})

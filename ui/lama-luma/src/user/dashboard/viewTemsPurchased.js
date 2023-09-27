@@ -30,7 +30,8 @@ const ViewItemsPurchased = () => {
                         <td>Item Category</td>
                         <td>Item Make</td>
                         <td>Valuation</td>
-                        <td>Loan Id</td>
+                       {// <td>Loan Id</td>
+                       }
                     </tr>
                 </thead>
                 <tbody>
@@ -43,7 +44,8 @@ const ViewItemsPurchased = () => {
                             <td>{item.item_category}</td>
                             <td>{item.item_make}</td>
                             <td>{item.valuation}</td>
-                            <td>{item.loan}</td>        
+                            {//<td>{item.loan}</td>   
+                    }     
                         </tr>
                     )})
                     }

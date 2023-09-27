@@ -56,7 +56,7 @@ const LoanCard = () => {
        getAllItems();
     },[])
     return (
-        <div>
+        <div style={{minWidth:"35rem",margin:"10px"}}>
     
                 <Table striped bordered hover>
             <thead>

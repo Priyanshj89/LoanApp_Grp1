@@ -75,7 +75,7 @@ const LoanCard = () => {
     return (
         <div>
             <Navbar/>
-            <div style={{display:"flex"}}>
+            <div className='loancard-body'>
         <div className='LoanCard' style={{width:'100%',padding:"2rem"}}>
             <div className='border-st'>
             <form style={{justifyContent:'center',border:'2px',display:"flex",flexDirection:"column"}} onSubmit={handleLoan}>
@@ -102,7 +102,7 @@ const LoanCard = () => {
                     <button className='sect-btn'>Add Data</button>
                 </form>
 <br /><br />
-                <Table striped bordered hover variant='dark'>
+                <Table striped bordered hover >
             <thead>
                 <tr>
                     <th>Loan id</th>
@@ -133,7 +133,9 @@ const LoanCard = () => {
         </Table>
             </div>
             </div>
+            <div className='loancard-part2'>
             <ToBeApproved/>
+            </div>
         </div>
         </div>
     )

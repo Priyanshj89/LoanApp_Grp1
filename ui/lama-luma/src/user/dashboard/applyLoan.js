@@ -81,10 +81,10 @@ const ApplyLoan = () => {
             return(
             <tr>
                 <td>{item.item_id}</td>
-                <td>{item.category}</td>
+                <td>{item.item_category}</td>
                 <td>{item.valuation}</td>
                 <td>{item.item_make}</td>
-                 <td>{item.description}</td>
+                 <td>{item.desc}</td>
                  <td><button onClick={()=>handleLoan(item)}>Apply</button></td> 
             </tr>
 

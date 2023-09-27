@@ -31,3 +31,23 @@
     padding: 0.5rem;
     border-radius: 10px;
 }
+
+.loancard-body{
+    display: flex;
+}
+
+@media screen and (max-width:480px)
+{
+    .loancard-body {
+        display: block;
+    }
+
+    .loancard-part2{
+        margin-top: 100vh;
+    }
+
+    .border-st{
+        width: 100%;
+        border: none;
+    }
+}
