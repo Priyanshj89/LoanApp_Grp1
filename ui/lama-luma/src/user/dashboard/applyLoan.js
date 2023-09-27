@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar"
 import "../../styles/ApplyLoan.css";
 import axios from "axios";
 import {Table} from 'react-bootstrap'
-
+import {Button} from 'react-bootstrap'
 const ApplyLoan = () => {
 
     const [items,setItems] = useState([]);
@@ -81,11 +81,11 @@ const ApplyLoan = () => {
             return(
             <tr>
                 <td>{item.item_id}</td>
-                <td>{item.category}</td>
+                <td>{item.item_category}</td>
                 <td>{item.valuation}</td>
                 <td>{item.item_make}</td>
                  <td>{item.description}</td>
-                 <td><button onClick={()=>handleLoan(item)}>Apply</button></td> 
+                 <td><Button variant="" onClick={()=>handleLoan(item)}>Apply</Button></td> 
             </tr>
 
          ) })
