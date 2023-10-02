@@ -2,7 +2,8 @@ import { useState,useEffect } from "react";
 import Navbar from "../../components/Navbar"
 import '../../styles/ApplyLoan.css'
 import axios from 'axios'
-import {Table} from 'react-bootstrap'
+import {Table} from 'react-bootstrap';
+import "../../styles/ViewLoan.css"
 
 import {Button} from 'react-bootstrap'
 
@@ -108,14 +109,15 @@ useEffect(()=>{
 
         </div>
         </div>
-        <h1>Available Items</h1>
-        <Table striped bordered hover>
+        <h1 style={{margin:"4rem",marginBottom:"2rem"}}>Available Items</h1>
+        <table striped bordered hover className="styled-table">
             <thead>
                 <tr>
-                    <td>Item Id</td>
-                    <td>Item Category</td>
-                    <td>Item Make</td>
-                    <td>Valuation</td>
+                    <th>Item Id</th>
+                    <th>Item Category</th>
+                    <th>Item Make</th>
+                    <th>Valuation</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -129,12 +131,12 @@ useEffect(()=>{
                 <td>{item.item_category}</td>
                 <td>{item.item_make}</td>
                 <td>{item.valuation}</td>
-                <Button variant="danger" onClick={()=>{deleteItem(item.item_id)}}>Delete Item</Button>
+                <Button variant="danger" onClick={()=>{deleteItem(item.item_id)}} style={{margin:"10px"}}>Delete Item</Button>
             </tr>
 
          ) })
         }
             </tbody>
-        </Table>
+        </table>
         </div>
 }

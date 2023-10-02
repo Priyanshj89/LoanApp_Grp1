@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios";
-import {Table} from 'react-bootstrap'
 import Navbar from '../../components/Navbar';
 import "../../styles/LoanCard.css"
 import "../../styles/AdminLogin.css"
 import {Button} from 'react-bootstrap'
 import Modal from 'react-bootstrap/Modal';
+import "../../styles/ViewLoan.css"
 
 const LoanCard = () => {
 
@@ -58,13 +58,14 @@ const LoanCard = () => {
     return (
         <div style={{minWidth:"35rem",margin:"10px"}}>
     
-                <Table striped bordered hover>
+                <table striped bordered hover className="styled-table">
             <thead>
                 <tr>
                     <th>Item Id</th>
                     <th>Item Make</th>
                     <th>Item Category</th>
                     <th>Employee Id</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -78,8 +79,8 @@ const LoanCard = () => {
                 <td>{item.item_make}</td>
                 <td>{item.item_category}</td>
                 <td>{item.employee.employee_id}</td>
-                <Button onClick={()=>setShow(true)}>Approve</Button>
-                <Button onClick={()=>{deleteItem(item.item_id)}}>Deny</Button>
+                <Button onClick={()=>setShow(true)} style={{margin:"3px"}}>Y</Button>
+                <Button onClick={()=>{deleteItem(item.item_id)}} variant='danger'>N</Button>
                 <Modal
                     show={show}
                     onHide={() => setShow(false)}
@@ -103,7 +104,7 @@ const LoanCard = () => {
          ) })
         }
             </tbody>
-        </Table>
+        </table>
         </div>
     )
 }

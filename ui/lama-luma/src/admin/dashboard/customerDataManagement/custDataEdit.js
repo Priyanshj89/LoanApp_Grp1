@@ -4,6 +4,7 @@ import {Table} from 'react-bootstrap'
 import { useNavigate } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
 import  Button  from "react-bootstrap/Button";
+import "../../../styles/ViewLoan.css"
 
 
 export default function CustDataEdit() {
@@ -91,17 +92,17 @@ export default function CustDataEdit() {
         return date?.split("T")[0];
     }
     return( <div>
-        <Table striped bordered hover>
+        <table striped bordered hover className="styled-table">
             <thead>
                 <tr>
-                    <td>Employee id</td>
-                    <td>Name</td>
-                    <td>Department</td>
-                    <td>Designation</td>
-                    <td>Gender</td>
-                    <td>Date of birth</td>
-                    <td>Date of Joining</td> 
-                    <td>Actions</td>
+                    <th>Employee id</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Designation</th>
+                    <th>Gender</th>
+                    <th>Date of birth</th>
+                    <th>Date of Joining</th> 
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -121,7 +122,7 @@ export default function CustDataEdit() {
                   <td>{temp2}</td>
                   <Button style={{width:'80px',marginRight:'20px'}} variant="danger" onClick={()=>deleteUser(item.employee_id)}>Delete</Button>
 
-                  <Button style={{width:'80px'}} variant="warning" onClick={() => setButton(true,item)}>
+                  <Button style={{width:'80px',margin:"10px"}} variant="warning" onClick={() => setButton(true,item)}>
                   Edit
                   </Button>
                   
@@ -159,7 +160,7 @@ export default function CustDataEdit() {
          ) })
         }
             </tbody>
-        </Table>
+        </table>
        
 
        </div>)

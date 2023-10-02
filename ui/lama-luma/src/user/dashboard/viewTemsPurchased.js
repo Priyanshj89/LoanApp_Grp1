@@ -1,7 +1,7 @@
 import { useEffect,useState } from "react";
 import Navbar from "../../components/Navbar";
 import axios from "axios";
-import {Table} from 'react-bootstrap';
+import "../../styles/ViewLoan.css"
 
 const ViewItemsPurchased = () => {
 
@@ -21,15 +21,14 @@ const ViewItemsPurchased = () => {
     },[]);
     return <div>
         <Navbar/>
-        <h1 style={{marginLeft:'400px'}}>Items You have purchased</h1>
-        <br />
-            <Table striped bordered hover>
+        <h1 style={{textAlign:"center",marginTop:"2rem"}}>Items You have purchased</h1>
+            <table striped bordered hover className="styled-table">
                 <thead>
                     <tr>
-                        <td>Item id</td>
-                        <td>Item Category</td>
-                        <td>Item Make</td>
-                        <td>Valuation</td>
+                        <th>Item id</th>
+                        <th>Item Category</th>
+                        <th>Item Make</th>
+                        <th>Valuation</th>
                        {// <td>Loan Id</td>
                        }
                     </tr>
@@ -50,7 +49,7 @@ const ViewItemsPurchased = () => {
                     )})
                     }
         </tbody>
-    </Table>
+    </table>
 </div>
 }
 export {ViewItemsPurchased};

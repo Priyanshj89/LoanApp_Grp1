@@ -4,6 +4,7 @@ import {Table} from 'react-bootstrap'
 import Navbar from '../../components/Navbar';
 import "../../styles/LoanCard.css"
 import "../../styles/AdminLogin.css";
+import "../../styles/ViewLoan.css"
 import ToBeApproved from "../dashboard/ToBeApproved"
 
 const LoanCard = () => {
@@ -101,8 +102,7 @@ const LoanCard = () => {
                     </div>
                     <button className='sect-btn'>Add Data</button>
                 </form>
-<br /><br />
-                <Table striped bordered hover >
+                <table striped bordered hover className="styled-table">
             <thead>
                 <tr>
                     <th>Loan id</th>
@@ -130,7 +130,7 @@ const LoanCard = () => {
          ) })
         }
             </tbody>
-        </Table>
+        </table>
             </div>
             </div>
             <div className='loancard-part2'>

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar"
 import "../../styles/ApplyLoan.css";
 import axios from "axios";
-import {Table} from 'react-bootstrap'
-import {Button} from 'react-bootstrap'
+import {Button} from 'react-bootstrap';
+import "../../styles/ViewLoan.css"
 const ApplyLoan = () => {
 
     const [items,setItems] = useState([]);
@@ -63,7 +63,7 @@ const ApplyLoan = () => {
     
     return <div>
         <Navbar/>
-        <Table striped bordered hover>
+        <table striped bordered hover className="styled-table">
             <thead>
                 <tr>
                     <th>Item Id</th>
@@ -91,7 +91,7 @@ const ApplyLoan = () => {
          ) })
         }
             </tbody>
-        </Table>
+        </table>
        
         </div>
 }
