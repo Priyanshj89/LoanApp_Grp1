@@ -3,12 +3,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/HomePage.css"
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './Navbar'
+import Navbar from './Navbar';
+import background from "./download.png";
 
 const HomePage = () => {
     
     return (
-        <div className='home'>
+        <div className='home' style={{ backgroundImage: `url(${background})`,backgroundSize:"100% 50%",backgroundRepeat: 'no-repeat',height:"100vh",backgroundPositionY:"100%"}}>
             <Navbar/>
             <div className='home-card'>
             <h2>Loan Application Management</h2>
