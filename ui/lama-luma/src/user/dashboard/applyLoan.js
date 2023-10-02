@@ -85,7 +85,7 @@ const ApplyLoan = () => {
                 <td>{item.valuation}</td>
                 <td>{item.item_make}</td>
                  <td>{item.desc}</td>
-                 <td><button onClick={()=>handleLoan(item)}>Apply</button></td> 
+                 <td><Button variant="link" onClick={()=>handleLoan(item)}>Apply</Button></td> 
             </tr>
 
          ) })

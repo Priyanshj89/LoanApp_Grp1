@@ -17,10 +17,10 @@ export default function Navbar() {
     return(
       
         <div className="navbar">
-            <div className="navbar-title" onClick={()=>{navigate('/')}} style={{cursor:"pointer"}}>
-                <h3 style={{marginRight:'250px'}}>Loan Management</h3>
+            <div className="navbar-title" onClick={()=>{navigate('/')}} style={{cursor:"pointer",display:"flex"}}>
+                <h3 >Loan Management</h3>
                 {
-                   temp?"":<Button onClick={()=>{handleLogout()}}>Logout</Button>
+                   temp?"":<Button onClick={()=>{handleLogout()}} style={{marginLeft:"55rem",backgroundColor:"rgb(251, 204, 75)",color:"black",fontSize:"14px",borderColor:"rgb(254, 171, 82)"}} >Logout</Button>
               
                 }
                 
