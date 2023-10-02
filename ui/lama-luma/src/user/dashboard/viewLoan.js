@@ -2,6 +2,7 @@ import { useEffect,useState } from "react";
 import Navbar from "../../components/Navbar";
 import axios from "axios";
 import {Table} from 'react-bootstrap';
+import "../../styles/ViewLoan.css"
 
 const ViewLoan = () => {
     const [loans, setLoans] = useState([])
@@ -20,15 +21,15 @@ const ViewLoan = () => {
     },[]);
     return <div>
         <Navbar/>
-            <Table striped bordered hover>
+            <Table striped bordered hover className="styled-table">
                 <thead>
                     <tr>
-                        <td>Loan id</td>
-                        <td>Issue Date</td>
-                        <td>Return Date</td>
-                        <td>Type</td>
-                        <td>Duration</td>
-                        <td> Status</td>
+                        <th>Loan id</th>
+                        <th>Issue Date</th>
+                        <th>Return Date</th>
+                        <th>Type</th>
+                        <th>Duration</th>
+                        <th> Status</th>
                     </tr>
                 </thead>
                 <tbody>
